@@ -4,229 +4,469 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salespage Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #ebe9e2; --gold: #a26a25; --gold-dark: #8d5a1e; --gold-light: #fdf6ee;
-      --white: #fff; --text: #2c2b28; --mid: #6b6760; --soft: #8a8278;
-      --border: #d4cfc6; --ibg: #f5f3ee;
+      --bg: #ebe9e2;
+      --gold: #a26a25;
+      --gold-hover: #8d5a1e;
+      --gold-light: #fdf8f2;
+      --gold-pale: #f5ede0;
+      --white: #ffffff;
+      --text: #1e1d1a;
+      --mid: #5c5954;
+      --soft: #9a9189;
+      --border: #dbd5cc;
+      --input-bg: #f7f5f1;
+      --card-shadow: 0 4px 32px rgba(0,0,0,0.08);
     }
-    body { background: var(--bg); font-family: 'Montserrat', sans-serif; color: var(--text); min-height: 100vh; padding: 48px 16px 80px; }
-    .wrap { max-width: 700px; margin: 0 auto; }
 
-    /* HEADER */
-    .hdr { text-align: center; margin-bottom: 36px; }
-    .line { width: 44px; height: 1px; background: var(--gold); margin: 0 auto 30px; }
-    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 7vw, 62px); font-weight: 400; line-height: 1.1; margin-bottom: 10px; }
-    h1 em { color: var(--gold); font-style: italic; }
-    .subl { font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
-    .intro { font-size: 13px; line-height: 1.75; color: var(--mid); max-width: 400px; margin: 0 auto; }
+    body {
+      background: var(--bg);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 56px 20px 100px;
+    }
 
-    /* CARD */
-    .card { background: var(--white); border-radius: 20px; box-shadow: 0 2px 24px rgba(0,0,0,0.07); padding: 36px 40px; }
+    /* ── WRAPPER ── */
+    .wrap { max-width: 660px; margin: 0 auto; }
 
-    /* TYPE TABS */
-    .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
-    .tab { border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 16px; cursor: pointer; background: var(--ibg); text-align: left; transition: all 0.15s; }
-    .tab:hover { border-color: var(--gold); }
-    .tab.on { border-color: var(--gold); background: var(--gold-light); }
-    .tab-tag { display: block; font-size: 9px; letter-spacing: 0.12em; color: var(--gold); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-    .tab strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 2px; }
-    .tab small { font-size: 11px; color: var(--soft); }
+    /* ── HEADER ── */
+    .hdr { text-align: center; margin-bottom: 48px; }
+    .logo-line {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-bottom: 36px;
+    }
+    .logo-bar { width: 40px; height: 1px; background: var(--gold); }
+    .logo-diamond {
+      width: 6px; height: 6px; background: var(--gold);
+      transform: rotate(45deg);
+    }
 
-    /* SECTION LABEL */
-    .slbl { font-size: 10px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; font-weight: 700; margin-bottom: 18px; }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 8vw, 68px);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
 
-    /* FIELDS */
-    .f { margin-bottom: 15px; }
+    .subl {
+      font-size: 10px; letter-spacing: 0.22em;
+      color: var(--gold); text-transform: uppercase;
+      font-weight: 600; margin-bottom: 14px;
+    }
+    .intro {
+      font-size: 14px; line-height: 1.8;
+      color: var(--mid); max-width: 380px; margin: 0 auto;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+
+    /* CARD HEADER BAR */
+    .card-top {
+      background: linear-gradient(135deg, #2c2b28 0%, #1a1917 100%);
+      padding: 24px 36px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .card-top-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); opacity: 0.7;
+    }
+    .card-top h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 400;
+      color: rgba(255,255,255,0.9); letter-spacing: 0.02em;
+    }
+    .card-top span {
+      margin-left: auto; font-size: 10px;
+      letter-spacing: 0.14em; color: var(--gold);
+      text-transform: uppercase; font-weight: 600;
+    }
+
+    .card-body { padding: 36px; }
+
+    /* ── SECTION HEADER ── */
+    .sec {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px; margin-top: 32px;
+    }
+    .sec:first-child { margin-top: 0; }
+    .sec-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--gold-pale); border: 1px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: var(--gold); flex-shrink: 0;
+    }
+    .sec-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mid);
+    }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* ── FIELDS ── */
+    .f { margin-bottom: 14px; }
     .r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .r3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-    label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.09em; color: var(--soft); text-transform: uppercase; margin-bottom: 6px; }
-    .lh { font-size: 10px; letter-spacing: 0; font-weight: 400; color: #b0aa9e; text-transform: none; }
-    input[type=text], input[type=number], textarea {
-      width: 100%; background: var(--ibg); border: 1px solid var(--border); border-radius: 8px;
-      padding: 10px 13px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--text);
-      outline: none; transition: border-color 0.15s; resize: vertical;
-    }
-    input:focus, textarea:focus { border-color: var(--gold); }
-    textarea { min-height: 70px; line-height: 1.6; }
-    .div { height: 1px; background: var(--bg); margin: 18px 0; }
 
-    /* IMAGE UPLOAD */
-    .img-upload { position: relative; }
+    label {
+      display: block; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--soft);
+      text-transform: uppercase; margin-bottom: 7px;
+    }
+    .lh {
+      font-size: 10px; letter-spacing: 0; font-weight: 400;
+      color: #c0b8ae; text-transform: none;
+    }
+
+    input[type=text], input[type=number], textarea {
+      width: 100%; background: var(--input-bg);
+      border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 11px 14px; font-family: 'Montserrat', sans-serif;
+      font-size: 13px; color: var(--text); outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s; resize: vertical;
+      appearance: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(162,106,37,0.1);
+    }
+    textarea { min-height: 80px; line-height: 1.65; }
+
+    /* ── HINT ── */
+    .hint {
+      display: flex; gap: 8px; align-items: flex-start;
+      background: var(--gold-light); border: 1px solid #e8d8c0;
+      border-radius: 8px; padding: 10px 14px;
+      font-size: 12px; color: var(--mid); line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .hint-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── IMAGE UPLOAD ── */
+    .img-wrap { position: relative; }
     .img-drop {
       border: 1.5px dashed var(--border); border-radius: 10px;
-      background: var(--ibg); cursor: pointer;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 6px; transition: border-color 0.15s; overflow: hidden;
-      min-height: 90px; padding: 16px;
+      background: var(--input-bg); cursor: pointer;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px; transition: all 0.15s;
+      min-height: 88px; padding: 16px; position: relative;
     }
-    .img-drop:hover { border-color: var(--gold); }
-    .img-drop.has-img { padding: 0; min-height: 120px; }
-    .img-drop img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
-    .img-drop .ico { font-size: 22px; opacity: 0.4; }
-    .img-drop .idrop-txt { font-size: 11px; color: var(--soft); text-align: center; line-height: 1.4; }
-    .img-drop .idrop-sub { font-size: 10px; color: #b0aa9e; }
-    .img-drop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-    .img-remove { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.5); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 11px; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 2; }
-    .img-upload:hover .img-remove { display: flex; }
+    .img-drop:hover { border-color: var(--gold); background: var(--gold-light); }
+    .img-drop.filled { padding: 0; min-height: 130px; border-style: solid; border-color: var(--gold); }
+    .img-drop.filled img { width: 100%; height: 130px; object-fit: cover; border-radius: 9px; display: block; }
+    .img-drop.avatar { min-height: 72px; }
+    .img-drop.avatar.filled img { width: 64px; height: 64px; border-radius: 50%; }
+    .img-drop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .upload-ico { font-size: 20px; opacity: 0.35; }
+    .upload-txt { font-size: 11px; color: var(--soft); text-align: center; }
+    .upload-sub { font-size: 10px; color: #c0b8ae; }
+    .img-remove {
+      position: absolute; top: 6px; right: 6px;
+      background: rgba(0,0,0,0.55); color: #fff; border: none;
+      border-radius: 50%; width: 22px; height: 22px;
+      font-size: 10px; cursor: pointer; display: none;
+      align-items: center; justify-content: center; z-index: 3;
+    }
+    .img-wrap:hover .img-remove.visible { display: flex; }
 
-    /* TESTI BLOCK */
-    .testi-block { border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: var(--ibg); margin-bottom: 12px; }
-    .testi-block .r2 { margin-bottom: 10px; }
+    /* ── TESTIMONIAL BLOCK ── */
+    .testi {
+      background: var(--input-bg); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 20px; margin-bottom: 12px;
+    }
+    .testi-head {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+    }
+    .testi-num {
+      font-size: 10px; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .testi-line { flex: 1; height: 1px; background: var(--border); }
 
-    /* HINT */
-    .hint { background: var(--gold-light); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 12px; color: var(--mid); line-height: 1.6; margin-bottom: 14px; }
+    /* ── VALIDATION ── */
+    .val {
+      background: var(--input-bg); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 20px; margin-top: 24px;
+    }
+    .val-title {
+      font-size: 11px; font-weight: 700; color: var(--text);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+    }
+    .val-title::before { content: ''; display: block; width: 3px; height: 14px; background: var(--gold); border-radius: 2px; }
+    .val-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px; }
+    .vdot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); flex-shrink: 0; margin-top: 3px;
+      transition: background 0.25s;
+    }
+    .vdot.ok { background: #52b788; }
+    .vdot.warn { background: #e07a3a; }
+    .vtxt { font-size: 12px; color: var(--mid); line-height: 1.5; }
 
-    /* VALIDATE */
-    .val-check { background: var(--ibg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-top: 18px; }
-    .val-check p { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 12px; letter-spacing: 0.02em; }
-    .val-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 12px; color: var(--mid); }
-    .val-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; margin-top: 3px; transition: background 0.2s; }
-    .val-dot.ok { background: #4caf50; }
-    .val-dot.warn { background: #ff9800; }
+    /* ── GOLDEN ── */
+    .golden {
+      background: linear-gradient(135deg, #fdf8f2 0%, #faf3e8 100%);
+      border: 1.5px solid var(--gold); border-radius: 14px;
+      padding: 20px; margin-top: 16px; display: none;
+    }
+    .golden p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-style: italic; color: var(--text);
+      line-height: 1.5; margin-bottom: 14px; font-weight: 400;
+    }
+    .golden-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-gy { background: var(--gold); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+    .btn-gy:hover { background: var(--gold-hover); }
+    .btn-gn { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); border-radius: 8px; padding: 10px 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; cursor: pointer; transition: background 0.15s; }
+    .btn-gn:hover { background: var(--gold-pale); }
 
-    /* GOLDEN RULE */
-    .golden { background: #fdf6ee; border: 1.5px solid var(--gold); border-radius: 12px; padding: 16px 18px; margin-top: 16px; }
-    .golden p { font-size: 13px; color: var(--text); font-style: italic; line-height: 1.6; margin-bottom: 10px; }
-    .golden-btns { display: flex; gap: 8px; }
-    .btn-yes { background: var(--gold); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; }
-    .btn-no { background: transparent; color: var(--gold); border: 1px solid var(--gold); border-radius: 8px; padding: 9px 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; cursor: pointer; }
-
-    /* GENERATE BTN */
+    /* ── GENERATE ── */
+    .gen-wrap { padding: 0 36px 36px; }
     .btn-gen {
-      width: 100%; background: var(--gold); color: #fff; border: none; border-radius: 12px;
-      padding: 17px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
-      cursor: pointer; letter-spacing: 0.04em; margin-top: 20px; transition: background 0.15s, transform 0.1s;
+      width: 100%;
+      background: linear-gradient(135deg, #a26a25 0%, #8d5a1e 100%);
+      color: #fff; border: none; border-radius: 14px;
+      padding: 18px; font-family: 'Montserrat', sans-serif;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      letter-spacing: 0.05em; transition: opacity 0.15s, transform 0.1s;
+      box-shadow: 0 4px 16px rgba(162,106,37,0.3);
     }
-    .btn-gen:hover { background: var(--gold-dark); }
+    .btn-gen:hover { opacity: 0.92; }
     .btn-gen:active { transform: scale(0.99); }
-    .btn-gen:disabled { background: var(--border); cursor: not-allowed; }
+    .btn-gen:disabled { background: var(--border); box-shadow: none; cursor: not-allowed; color: var(--soft); }
 
-    /* RESULT */
-    .result { display: none; margin-top: 22px; }
-    .ok-badge { display: inline-flex; align-items: center; gap: 8px; background: #eef7ee; border: 1px solid #b8dbb8; border-radius: 8px; padding: 10px 16px; font-size: 13px; color: #3a7a3a; font-weight: 600; margin-bottom: 12px; }
-    .res-note { font-size: 13px; color: var(--mid); line-height: 1.6; margin-bottom: 12px; }
-    .res-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
-    .btn-copy { background: var(--gold); color: #fff; border: none; border-radius: 10px; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
-    .btn-copy:hover { background: var(--gold-dark); }
-    .btn-dl { background: transparent; color: var(--gold); border: 1px solid var(--gold); border-radius: 10px; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 13px; cursor: pointer; }
-    .btn-dl:hover { background: var(--gold-light); }
-    .btn-rst { background: transparent; color: var(--soft); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; font-family: 'Montserrat', sans-serif; font-size: 13px; cursor: pointer; }
-    .res-pre { background: var(--ibg); border: 1px solid var(--border); border-radius: 10px; padding: 14px; font-size: 11px; color: var(--soft); font-family: monospace; max-height: 220px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; line-height: 1.6; }
+    /* ── RESULT ── */
+    .result { display: none; padding: 0 36px 36px; }
+    .ok-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: #edf7ed; border: 1px solid #a8d5a8;
+      border-radius: 10px; padding: 12px 16px;
+      font-size: 13px; color: #2d6a2d; font-weight: 600; margin-bottom: 14px;
+    }
+    .ok-ico { font-size: 16px; }
+    .res-note { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 14px; }
+    .res-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .btn-copy {
+      background: var(--gold); color: #fff; border: none;
+      border-radius: 10px; padding: 11px 22px;
+      font-family: 'Montserrat', sans-serif; font-size: 13px;
+      font-weight: 600; cursor: pointer; transition: background 0.15s;
+    }
+    .btn-copy:hover { background: var(--gold-hover); }
+    .btn-dl {
+      background: transparent; color: var(--gold);
+      border: 1.5px solid var(--gold); border-radius: 10px;
+      padding: 11px 22px; font-family: 'Montserrat', sans-serif;
+      font-size: 13px; cursor: pointer; transition: background 0.15s;
+    }
+    .btn-dl:hover { background: var(--gold-pale); }
+    .btn-rst {
+      background: transparent; color: var(--soft);
+      border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 11px 18px; font-family: 'Montserrat', sans-serif;
+      font-size: 13px; cursor: pointer;
+    }
+    .res-pre {
+      background: #1e1d1a; border-radius: 12px;
+      padding: 16px; font-size: 11px; color: #a0998e;
+      font-family: 'Courier New', monospace; max-height: 200px;
+      overflow-y: auto; white-space: pre-wrap; word-break: break-word;
+      line-height: 1.7;
+    }
 
-    /* LOADING */
-    .ldbox { text-align: center; padding: 40px 0; }
-    .spin { width: 34px; height: 34px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: sp 0.8s linear infinite; margin: 0 auto 12px; }
+    /* ── LOADING ── */
+    .ldbox { text-align: center; padding: 48px 0; }
+    .spin {
+      width: 36px; height: 36px; margin: 0 auto 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%; animation: sp 0.9s linear infinite;
+    }
     @keyframes sp { to { transform: rotate(360deg); } }
     .ldtxt { font-size: 13px; color: var(--soft); }
-    .errbox { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 13px 16px; font-size: 13px; color: #c0392b; margin-top: 12px; }
+    .ldstep { font-size: 11px; color: #c0b8ae; margin-top: 6px; }
 
-    @media(max-width:560px){
-      .card{padding:24px 20px}
-      .r2,.r3,.tabs{grid-template-columns:1fr}
+    .errbox {
+      background: #fff5f5; border: 1px solid #f0c0c0;
+      border-radius: 10px; padding: 14px 16px;
+      font-size: 13px; color: #c0392b;
+    }
+
+    /* ── DIVIDER ── */
+    .div { height: 1px; background: var(--bg); margin: 8px 0 24px; }
+
+    @media(max-width: 560px) {
+      body { padding: 32px 12px 80px; }
+      .card-body, .gen-wrap, .result { padding-left: 20px; padding-right: 20px; }
+      .card-top { padding: 18px 20px; }
+      .r2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 <div class="wrap">
 
+  <!-- HEADER -->
   <div class="hdr">
-    <div class="line"></div>
+    <div class="logo-line">
+      <div class="logo-bar"></div>
+      <div class="logo-diamond"></div>
+      <div class="logo-bar"></div>
+    </div>
+    <p class="subl">Miniprodukt · Checkout · Digital</p>
     <h1>Dein <em>Salespage</em><br>Generator</h1>
-    <p class="subl">Minikurs · Hauptkurs · Checkout</p>
-    <p class="intro">Wähle den Typ, fülle die Felder aus – fertig.<br>Das Tool schreibt dir die komplette Salespage.</p>
+    <p class="intro">6 Felder. Fertige Salespage.<br>Direkt einsatzbereit für Elopage, ThriveCart & Kajabi.</p>
   </div>
 
+  <!-- CARD -->
   <div class="card">
 
-    <!-- TABS -->
-    <div class="tabs">
-      <button class="tab on" onclick="setTab(this,'mini')">
-        <span class="tab-tag">Impulskauf</span>
-        <strong>Minikurs / Checkout</strong>
-        <small>7€ – 97€ · kurz & konkret</small>
-      </button>
-      <button class="tab" onclick="setTab(this,'main')">
-        <span class="tab-tag">Hauptprodukt</span>
-        <strong>Kurs / Coaching</strong>
-        <small>97€+ · ausführlich</small>
-      </button>
+    <div class="card-top">
+      <div class="card-top-dot"></div>
+      <div class="card-top-dot" style="opacity:0.4"></div>
+      <div class="card-top-dot" style="opacity:0.2"></div>
+      <h2>Dein Miniprodukt</h2>
+      <span>Impulskauf · bis 97€</span>
     </div>
 
-    <!-- ═══════════ MINI FELDER ═══════════ -->
-    <div id="mini">
-      <p class="slbl">Dein Miniprodukt</p>
+    <div class="card-body">
+
+      <!-- 1. BASICS -->
+      <div class="sec">
+        <div class="sec-num">1</div>
+        <span class="sec-title">Basis</span>
+        <div class="sec-line"></div>
+      </div>
 
       <div class="r2">
-        <div class="f"><label>Produktname</label><input type="text" id="mn" placeholder="z.B. Buchungs-Booster"></div>
-        <div class="f"><label>Preis <span class="lh">(netto €)</span></label><input type="number" id="mp" placeholder="27"></div>
+        <div class="f">
+          <label>Produktname</label>
+          <input type="text" id="mn" placeholder="z.B. Buchungs-Booster">
+        </div>
+        <div class="f">
+          <label>Preis <span class="lh">(netto €)</span></label>
+          <input type="number" id="mp" placeholder="27">
+        </div>
       </div>
 
-      <!-- KURS COVER -->
+      <div class="f">
+        <label>Zielgruppe</label>
+        <input type="text" id="mtg" placeholder="z.B. Fotografinnen die über Instagram buchen wollen">
+      </div>
+
+      <!-- COVER -->
       <div class="f">
         <label>Kurs-Cover <span class="lh">(optional – erscheint oben auf der Salespage)</span></label>
-        <div class="img-upload">
-          <div class="img-drop" id="cover-drop" onclick="triggerFile('cover-inp')">
-            <span class="ico">🖼</span>
-            <span class="idrop-txt">Bild hier ablegen oder klicken</span>
-            <span class="idrop-sub">JPG, PNG · max. 2 MB</span>
+        <div class="img-wrap">
+          <div class="img-drop" id="cv-drop">
+            <input type="file" id="cv-inp" accept="image/*" onchange="loadImg(this,'cv-drop','cv-b64')">
+            <span class="upload-ico">🖼</span>
+            <span class="upload-txt">Hier klicken oder Bild ablegen</span>
+            <span class="upload-sub">JPG, PNG · empfohlen 800×500px · max. 2MB</span>
           </div>
-          <input type="file" id="cover-inp" accept="image/*" style="display:none" onchange="loadImg(this,'cover-drop','cover-b64')">
-          <button class="img-remove" onclick="removeImg('cover-drop','cover-inp','cover-b64')">✕</button>
+          <button class="img-remove" id="cv-rm" onclick="removeImg('cv-drop','cv-inp','cv-b64','cv-rm')">✕</button>
         </div>
-        <input type="hidden" id="cover-b64">
+        <input type="hidden" id="cv-b64">
+      </div>
+
+      <!-- 2. PITCH -->
+      <div class="sec" style="margin-top:28px">
+        <div class="sec-num">2</div>
+        <span class="sec-title">Der Pitch-Satz</span>
+        <div class="sec-line"></div>
+      </div>
+
+      <div class="hint">
+        <span class="hint-icon">💡</span>
+        <span>Zeig ein <strong>konkretes, messbares Ergebnis</strong> — nicht vage.<br>
+        ✅ <em>"Erstelle deinen eigenen Lightroom-Style in 2 Stunden"</em><br>
+        ❌ <em>"Lerne bessere Fotos zu machen"</em></span>
       </div>
 
       <div class="f">
-        <label>Pitch-Satz <span class="lh">(das erste was jemand liest – 1 konkreter Satz)</span></label>
-        <div class="hint">💡 Zeig ein messbares Ergebnis: <em>"Erstelle deinen eigenen Lightroom-Style in 2 Stunden"</em> — nicht: <em>"Lerne bessere Fotos zu machen"</em></div>
+        <label>Pitch-Satz <span class="lh">(das erste was jemand liest)</span></label>
         <textarea id="mpit" rows="2" placeholder="z.B. Erstelle deinen eigenen konsistenten Feed-Look in Lightroom — und lass deine Fotos endlich so professionell wirken wie du fotografierst"></textarea>
       </div>
 
-      <div class="f"><label>Zielgruppe</label><input type="text" id="mtg" placeholder="z.B. Fotografinnen die einen wiedererkennbaren Editing-Stil wollen"></div>
+      <!-- 3. INHALT -->
+      <div class="sec" style="margin-top:28px">
+        <div class="sec-num">3</div>
+        <span class="sec-title">Inhalt & Format</span>
+        <div class="sec-line"></div>
+      </div>
 
-      <div class="div"></div>
-
-      <div class="f">
-        <label>Was ist drin? <span class="lh">(3–5 Stichpunkte – konkret, kein Blabla)</span></label>
-        <div class="hint">💡 Gut: <em>"4 Videos à 10 Min. – direkt umsetzbar"</em> · Schlecht: <em>"wertvolle Inhalte"</em></div>
-        <textarea id="mcon" rows="5" placeholder="z.B.&#10;4 Video-Lektionen (je 10 Min.) – direkt umsetzbar&#10;Schritt-für-Schritt Workbook&#10;Die 3 Fehler die 90% machen – und wie du sie vermeidest&#10;Dein kompletter Workflow in unter 5 Min."></textarea>
+      <div class="hint">
+        <span class="hint-icon">💡</span>
+        <span>Konkret, kein Blabla.<br>
+        ✅ <em>"4 Videos à 10 Min. – direkt umsetzbar"</em><br>
+        ❌ <em>"Wertvolle Inhalte"</em></span>
       </div>
 
       <div class="f">
-        <label>Format <span class="lh">(was bekommt jemand genau?)</span></label>
-        <input type="text" id="mfmt" placeholder="z.B. Videos + Workbook + Vorlagen als PDF">
+        <label>Was ist drin? <span class="lh">(3–5 Stichpunkte)</span></label>
+        <textarea id="mcon" rows="5" placeholder="z.B.&#10;4 Video-Lektionen (je 10 Min.) – direkt umsetzbar&#10;Schritt-für-Schritt Workbook&#10;Die 3 Fehler die 90% machen – und wie du sie vermeidest&#10;Dein kompletter Workflow in unter 5 Minuten pro Foto"></textarea>
+      </div>
+
+      <div class="r2">
+        <div class="f">
+          <label>Format</label>
+          <input type="text" id="mfmt" placeholder="z.B. Videos + PDF Workbook">
+        </div>
+        <div class="f">
+          <label>Häufigster Einwand</label>
+          <input type="text" id="mobj" placeholder="z.B. Ich bin Anfänger">
+        </div>
       </div>
 
       <div class="f">
-        <label>Für wen ist es? <span class="lh">(1–2 Sätze, direkt angesprochen)</span></label>
-        <textarea id="mfw" rows="3" placeholder="z.B. Dieser Kurs ist für dich wenn du tolle Fotos machst aber dein Feed trotzdem zusammengewürfelt wirkt — und du endlich einen Style willst der sofort wiedererkennbar ist."></textarea>
+        <label>Für wen ist es? <span class="lh">(1–2 Sätze)</span></label>
+        <textarea id="mfw" rows="3" placeholder="z.B. Dieser Kurs ist für dich wenn du tolle Fotos machst aber dein Feed trotzdem zusammengewürfelt wirkt — und du endlich einen Style willst der sofort wiedererkennbar ist, ohne stundenlang an jedem Bild rumzuschrauben."></textarea>
       </div>
 
-      <div class="f">
-        <label>Häufigster Einwand</label>
-        <input type="text" id="mobj" placeholder="z.B. Ich hab keine Zeit / Ich bin Anfänger">
+      <!-- 4. TESTIMONIALS -->
+      <div class="sec" style="margin-top:28px">
+        <div class="sec-num">4</div>
+        <span class="sec-title">Testimonials <span class="lh" style="text-transform:none;letter-spacing:0">(optional)</span></span>
+        <div class="sec-line"></div>
       </div>
 
-      <div class="div"></div>
+      <div class="hint">
+        <span class="hint-icon">💬</span>
+        <span>Kein <em>"Toller Kurs!"</em> — zeig <strong>Vorher + konkretes Ergebnis</strong> mit Zahl oder Zeitraum.</span>
+      </div>
 
-      <!-- TESTIMONIALS -->
-      <p class="slbl">Testimonials <span class="lh" style="font-size:10px;text-transform:none;letter-spacing:0">(optional – max. 2)</span></p>
-      <div class="hint">💡 Kein <em>"Toller Kurs!"</em> — zeig Vorher-Situation + konkretes Ergebnis mit Zahl oder Zeitraum</div>
-
-      <div class="testi-block">
+      <!-- Testimonial 1 -->
+      <div class="testi">
+        <div class="testi-head">
+          <span class="testi-num">Testimonial 1</span>
+          <div class="testi-line"></div>
+        </div>
         <div class="r2">
           <div class="f">
-            <label>Foto <span class="lh">(optional)</span></label>
-            <div class="img-upload">
-              <div class="img-drop" id="t1-drop" onclick="triggerFile('t1-inp')" style="min-height:70px">
-                <span class="ico" style="font-size:18px">👤</span>
-                <span class="idrop-txt" style="font-size:10px">Profilfoto</span>
+            <label>Profilfoto <span class="lh">(optional)</span></label>
+            <div class="img-wrap">
+              <div class="img-drop avatar" id="t1-drop">
+                <input type="file" id="t1-inp" accept="image/*" onchange="loadImg(this,'t1-drop','t1-b64',true)">
+                <span class="upload-ico" style="font-size:18px">👤</span>
+                <span class="upload-txt" style="font-size:10px">Foto hochladen</span>
               </div>
-              <input type="file" id="t1-inp" accept="image/*" style="display:none" onchange="loadImg(this,'t1-drop','t1-b64',true)">
-              <button class="img-remove" onclick="removeImg('t1-drop','t1-inp','t1-b64')">✕</button>
+              <button class="img-remove" id="t1-rm" onclick="removeImg('t1-drop','t1-inp','t1-b64','t1-rm',true)">✕</button>
             </div>
             <input type="hidden" id="t1-b64">
           </div>
@@ -236,22 +476,27 @@
           </div>
         </div>
         <div class="f">
-          <label>Das Testimonial</label>
-          <textarea id="t1t" rows="3" placeholder="z.B. Ich hab jahrelang irgendwelche Presets runtergeladen und mich gefragt warum mein Feed nie zusammenpasst. Nach diesem Kurs hab ich meinen eigenen Style — mein letzter Post hatte dreimal so viele Saves wie sonst."></textarea>
+          <label>Zitat</label>
+          <textarea id="t1t" rows="3" placeholder="z.B. Ich hab jahrelang irgendwelche Presets runtergeladen und mich gefragt warum mein Feed nie zusammenpasst. Nach diesem Kurs hab ich meinen eigenen Style — mein letzter Post hatte dreimal so viele Saves."></textarea>
         </div>
       </div>
 
-      <div class="testi-block">
+      <!-- Testimonial 2 -->
+      <div class="testi">
+        <div class="testi-head">
+          <span class="testi-num">Testimonial 2</span>
+          <div class="testi-line"></div>
+        </div>
         <div class="r2">
           <div class="f">
-            <label>Foto <span class="lh">(optional)</span></label>
-            <div class="img-upload">
-              <div class="img-drop" id="t2-drop" onclick="triggerFile('t2-inp')" style="min-height:70px">
-                <span class="ico" style="font-size:18px">👤</span>
-                <span class="idrop-txt" style="font-size:10px">Profilfoto</span>
+            <label>Profilfoto <span class="lh">(optional)</span></label>
+            <div class="img-wrap">
+              <div class="img-drop avatar" id="t2-drop">
+                <input type="file" id="t2-inp" accept="image/*" onchange="loadImg(this,'t2-drop','t2-b64',true)">
+                <span class="upload-ico" style="font-size:18px">👤</span>
+                <span class="upload-txt" style="font-size:10px">Foto hochladen</span>
               </div>
-              <input type="file" id="t2-inp" accept="image/*" style="display:none" onchange="loadImg(this,'t2-drop','t2-b64',true)">
-              <button class="img-remove" onclick="removeImg('t2-drop','t2-inp','t2-b64')">✕</button>
+              <button class="img-remove" id="t2-rm" onclick="removeImg('t2-drop','t2-inp','t2-b64','t2-rm',true)">✕</button>
             </div>
             <input type="hidden" id="t2-b64">
           </div>
@@ -261,377 +506,220 @@
           </div>
         </div>
         <div class="f">
-          <label>Das Testimonial</label>
-          <textarea id="t2t" rows="3" placeholder="z.B. Vorher hab ich nie gewusst was ich posten soll. Nach diesem Kurs hab ich meinen Content für 2 Wochen an einem Nachmittag fertig."></textarea>
+          <label>Zitat</label>
+          <textarea id="t2t" rows="3" placeholder="z.B. Vorher hab ich nie gewusst was ich posten soll. Nach diesem Kurs hab ich meinen Content für 2 Wochen an einem Nachmittag fertig gehabt."></textarea>
         </div>
       </div>
 
       <!-- VALIDATION -->
-      <div class="val-check" id="mini-val">
-        <p>Schnell-Check vor dem Generieren:</p>
-        <div class="val-item"><div class="val-dot" id="vd1"></div><span id="vt1">Pitch-Satz enthält ein konkretes, messbares Ergebnis</span></div>
-        <div class="val-item"><div class="val-dot" id="vd2"></div><span id="vt2">Inhalte sind konkret beschrieben (keine weichen Aussagen)</span></div>
-        <div class="val-item"><div class="val-dot" id="vd3"></div><span id="vt3">Preis ist eingetragen</span></div>
+      <div class="val">
+        <div class="val-title">Schnell-Check</div>
+        <div class="val-row"><div class="vdot" id="vd1"></div><span class="vtxt" id="vt1">Pitch-Satz enthält ein konkretes, messbares Ergebnis</span></div>
+        <div class="val-row"><div class="vdot" id="vd2"></div><span class="vtxt" id="vt2">Inhalte sind konkret (keine weichen Aussagen wie "wertvoll")</span></div>
+        <div class="val-row"><div class="vdot" id="vd3"></div><span class="vtxt" id="vt3">Preis ist eingetragen</span></div>
+        <div class="val-row"><div class="vdot" id="vd4"></div><span class="vtxt" id="vt4">Zielgruppe ist definiert</span></div>
       </div>
 
       <!-- GOLDEN RULE -->
-      <div class="golden" id="golden-mini" style="display:none">
-        <p>„Liest jemand deinen Pitch-Satz und weiß sofort was er konkret bekommt?"</p>
+      <div class="golden" id="golden">
+        <p>„Liest jemand deinen Pitch-Satz und weiß sofort, was er konkret bekommt?"</p>
         <div class="golden-btns">
-          <button class="btn-yes" onclick="goldenYes()">Ja, absolut klar ✓</button>
-          <button class="btn-no" onclick="goldenNo()">Nein, nochmal überarbeiten</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════ MAIN FELDER ═══════════ -->
-    <div id="main" style="display:none">
-      <p class="slbl">Dein Hauptprodukt</p>
-
-      <div class="r2">
-        <div class="f"><label>Produktname</label><input type="text" id="pn" placeholder="z.B. Passives Einkommen für Fotografinnen"></div>
-        <div class="f"><label>Preis <span class="lh">(netto €)</span></label><input type="number" id="pp" placeholder="297"></div>
-      </div>
-
-      <div class="f">
-        <label>Kurs-Cover <span class="lh">(optional)</span></label>
-        <div class="img-upload">
-          <div class="img-drop" id="pcover-drop" onclick="triggerFile('pcover-inp')">
-            <span class="ico">🖼</span>
-            <span class="idrop-txt">Bild hier ablegen oder klicken</span>
-            <span class="idrop-sub">JPG, PNG · max. 2 MB</span>
-          </div>
-          <input type="file" id="pcover-inp" accept="image/*" style="display:none" onchange="loadImg(this,'pcover-drop','pcover-b64')">
-          <button class="img-remove" onclick="removeImg('pcover-drop','pcover-inp','pcover-b64')">✕</button>
-        </div>
-        <input type="hidden" id="pcover-b64">
-      </div>
-
-      <div class="f">
-        <label>Headline-Versprechen <span class="lh">(Ergebnis + Zeitraum + Einwand)</span></label>
-        <input type="text" id="phl" placeholder="z.B. In 30 Tagen dein erstes digitales Produkt erstellen und verkaufen — auch wenn du bei null anfängst">
-      </div>
-
-      <div class="f"><label>Zielgruppe</label><input type="text" id="ptg" placeholder="z.B. Fotografinnen die ihr Wissen als Kurs verkaufen wollen"></div>
-
-      <div class="div"></div>
-
-      <div class="r2">
-        <div class="f"><label>Das Problem vorher</label><textarea id="pprob" placeholder="z.B. Du weißt dass du Wissen hast das anderen hilft – aber das Produkt entsteht einfach nicht..."></textarea></div>
-        <div class="f"><label>Die Transformation danach</label><textarea id="ptrans" placeholder="z.B. Du hast ein fertiges Produkt das automatisch verkauft – ohne täglich neue Kunden zu suchen"></textarea></div>
-      </div>
-
-      <div class="f"><label>Module / Inhalte</label><textarea id="pcon" rows="6" placeholder="z.B.&#10;Modul 1: Deine Produktidee finden (Wert 99€)&#10;Modul 2: Inhalte mit KI erstellen&#10;Modul 3: Salespage & Checkout aufsetzen&#10;Bonus: 50 fertige Prompts (Wert 29€)"></textarea></div>
-
-      <div class="f"><label>Deine Story & Credibility</label><textarea id="pstory" placeholder="z.B. Ich bin [Name]. 2022 hab ich meinen ersten Kurs für 97€ verkauft – mit 400 Followern und null Ahnung. Heute sind es 200+ Kundinnen."></textarea></div>
-
-      <div class="r2">
-        <div class="f"><label>Streichpreis <span class="lh">(optional)</span></label><input type="text" id="pold" placeholder="z.B. statt 497€"></div>
-        <div class="f"><label>Garantie <span class="lh">(optional)</span></label><input type="text" id="pgar" placeholder="z.B. 14-Tage Geld-zurück"></div>
-      </div>
-
-      <div class="f"><label>Häufigste Einwände <span class="lh">(3–4)</span></label><textarea id="pobj" placeholder="z.B.&#10;Ich hab keine Zeit&#10;Ich bin Anfänger&#10;Ich hab zu wenig Follower&#10;Ich weiß nicht ob das für mich funktioniert"></textarea></div>
-
-      <div class="div"></div>
-
-      <p class="slbl">Testimonials</p>
-      <div class="hint">💡 Zeig Vorher-Situation + konkretes Ergebnis mit Zahlen</div>
-
-      <div class="testi-block">
-        <div class="r2">
-          <div class="f">
-            <label>Foto <span class="lh">(optional)</span></label>
-            <div class="img-upload">
-              <div class="img-drop" id="pt1-drop" onclick="triggerFile('pt1-inp')" style="min-height:70px">
-                <span class="ico" style="font-size:18px">👤</span>
-                <span class="idrop-txt" style="font-size:10px">Profilfoto</span>
-              </div>
-              <input type="file" id="pt1-inp" accept="image/*" style="display:none" onchange="loadImg(this,'pt1-drop','pt1-b64',true)">
-              <button class="img-remove" onclick="removeImg('pt1-drop','pt1-inp','pt1-b64')">✕</button>
-            </div>
-            <input type="hidden" id="pt1-b64">
-          </div>
-          <div class="f"><label>Name & Beschreibung</label><input type="text" id="pt1n" placeholder="z.B. Lisa, Fotografin aus Hamburg"><label style="margin-top:10px">Testimonial</label><textarea id="pt1t" rows="3" placeholder="z.B. 570€ in der ersten Woche nach dem Launch – ich hätte nicht gedacht dass es so schnell geht."></textarea></div>
+          <button class="btn-gy" onclick="goldenYes()">Ja, absolut klar ✓</button>
+          <button class="btn-gn" onclick="goldenNo()">Nein, nochmal überarbeiten</button>
         </div>
       </div>
 
-      <div class="testi-block">
-        <div class="r2">
-          <div class="f">
-            <label>Foto <span class="lh">(optional)</span></label>
-            <div class="img-upload">
-              <div class="img-drop" id="pt2-drop" onclick="triggerFile('pt2-inp')" style="min-height:70px">
-                <span class="ico" style="font-size:18px">👤</span>
-                <span class="idrop-txt" style="font-size:10px">Profilfoto</span>
-              </div>
-              <input type="file" id="pt2-inp" accept="image/*" style="display:none" onchange="loadImg(this,'pt2-drop','pt2-b64',true)">
-              <button class="img-remove" onclick="removeImg('pt2-drop','pt2-inp','pt2-b64')">✕</button>
-            </div>
-            <input type="hidden" id="pt2-b64">
-          </div>
-          <div class="f"><label>Name & Beschreibung</label><input type="text" id="pt2n" placeholder="z.B. Mel, Business Coach"><label style="margin-top:10px">Testimonial</label><textarea id="pt2t" rows="3" placeholder="z.B. 18.000€ am Launch-Tag – das hätte ich mir vorher nie vorstellen können."></textarea></div>
-        </div>
-      </div>
-    </div>
+    </div><!-- /card-body -->
 
     <!-- GENERATE -->
-    <button class="btn-gen" id="btn" onclick="generate()">Salespage generieren ✦</button>
-    <div class="result" id="result"><div id="res-inner"></div></div>
+    <div class="gen-wrap">
+      <button class="btn-gen" id="btn" onclick="generate()">
+        Salespage generieren ✦
+      </button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="result" id="result">
+      <div id="res-inner"></div>
+    </div>
 
   </div><!-- /card -->
 </div><!-- /wrap -->
 
 <script>
 let lastHTML = '';
-let mode = 'mini';
-let goldenPassed = false;
-
-// ── TAB SWITCH ──
-function setTab(el, m) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-  el.classList.add('on');
-  mode = m;
-  document.getElementById('mini').style.display = m === 'mini' ? 'block' : 'none';
-  document.getElementById('main').style.display = m === 'main' ? 'block' : 'none';
-  goldenPassed = false;
-}
-
-// ── IMAGE HANDLING ──
-function triggerFile(id) { document.getElementById(id).click(); }
-
-function loadImg(input, dropId, b64Id, isAvatar = false) {
-  const file = input.files[0];
-  if (!file) return;
-  if (file.size > 2.5 * 1024 * 1024) { alert('Bild zu groß – max. 2 MB'); return; }
-  const reader = new FileReader();
-  reader.onload = e => {
-    const drop = document.getElementById(dropId);
-    const b64 = e.target.result;
-    document.getElementById(b64Id).value = b64;
-    drop.innerHTML = `<img src="${b64}" style="${isAvatar ? 'width:70px;height:70px;border-radius:50%;object-fit:cover' : 'width:100%;height:120px;object-fit:cover;border-radius:8px'}">`;
-    drop.classList.add('has-img');
-  };
-  reader.readAsDataURL(file);
-}
-
-function removeImg(dropId, inpId, b64Id) {
-  const drop = document.getElementById(dropId);
-  const isAvatar = drop.style.minHeight === '70px';
-  drop.innerHTML = isAvatar
-    ? `<span class="ico" style="font-size:18px">👤</span><span class="idrop-txt" style="font-size:10px">Profilfoto</span>`
-    : `<span class="ico">🖼</span><span class="idrop-txt">Bild hier ablegen oder klicken</span><span class="idrop-sub">JPG, PNG · max. 2 MB</span>`;
-  drop.classList.remove('has-img');
-  document.getElementById(inpId).value = '';
-  document.getElementById(b64Id).value = '';
-}
-
-// ── VALIDATION (mini only) ──
-function runValidation() {
-  if (mode !== 'mini') return;
-  const pitch = v('mpit');
-  const content = v('mcon');
-  const price = v('mp');
-  const badWords = ['wertvoll', 'umfassend', 'intensiv', 'exklusiv', 'holistisch'];
-
-  const hasConcrete = /\d|Minuten|Stunden|Tage|Wochen|Monate|Schritt|Vorlage|Video|Workbook|PDF|Checklist/i.test(pitch);
-  const hasNoBad = !badWords.some(w => content.toLowerCase().includes(w));
-
-  setDot('vd1', hasConcrete, pitch.length > 0);
-  setDot('vd2', hasNoBad, content.length > 0);
-  setDot('vd3', price.length > 0, price.length > 0);
-
-  const allOk = hasConcrete && hasNoBad && price.length > 0 && pitch.length > 5;
-  document.getElementById('golden-mini').style.display = allOk ? 'block' : 'none';
-}
-
-function setDot(id, ok, filled) {
-  const el = document.getElementById(id);
-  if (!filled) { el.className = 'val-dot'; return; }
-  el.className = 'val-dot ' + (ok ? 'ok' : 'warn');
-}
-
-function goldenYes() { goldenPassed = true; document.getElementById('golden-mini').style.backgroundColor = '#eef7ee'; }
-function goldenNo() { document.getElementById('mpit').focus(); document.getElementById('golden-mini').style.display = 'none'; }
-
-// ── FIELD WATCHERS ──
-['mpit','mcon','mp','mtg'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener('input', runValidation);
-});
 
 // ── VALUE HELPER ──
 const v = id => (document.getElementById(id)?.value || '').trim();
 
-// ── PROMPT BUILDER ──
+// ── IMAGE UPLOAD ──
+function loadImg(input, dropId, b64Id, isAvatar = false) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2.5 * 1024 * 1024) { alert('Bild zu groß – bitte max. 2 MB'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const b64 = e.target.result;
+    document.getElementById(b64Id).value = b64;
+    const drop = document.getElementById(dropId);
+    if (isAvatar) {
+      drop.innerHTML = `<img src="${b64}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;margin:0 auto"><input type="file" id="${input.id}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}',true)" style="position:absolute;inset:0;opacity:0;cursor:pointer">`;
+    } else {
+      drop.innerHTML = `<img src="${b64}" style="width:100%;height:130px;object-fit:cover;border-radius:9px;display:block"><input type="file" id="${input.id}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}')" style="position:absolute;inset:0;opacity:0;cursor:pointer">`;
+    }
+    drop.classList.add('filled');
+    const rmBtn = document.getElementById(dropId.replace('drop','rm'));
+    if (rmBtn) rmBtn.classList.add('visible');
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeImg(dropId, inpId, b64Id, rmId, isAvatar = false) {
+  document.getElementById(b64Id).value = '';
+  const drop = document.getElementById(dropId);
+  drop.classList.remove('filled');
+  if (isAvatar) {
+    drop.innerHTML = `<input type="file" id="${inpId}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}',true)" style="position:absolute;inset:0;opacity:0;cursor:pointer"><span class="upload-ico" style="font-size:18px">👤</span><span class="upload-txt" style="font-size:10px">Foto hochladen</span>`;
+  } else {
+    drop.innerHTML = `<input type="file" id="${inpId}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}')" style="position:absolute;inset:0;opacity:0;cursor:pointer"><span class="upload-ico">🖼</span><span class="upload-txt">Hier klicken oder Bild ablegen</span><span class="upload-sub">JPG, PNG · empfohlen 800×500px · max. 2MB</span>`;
+  }
+  const rmBtn = document.getElementById(rmId);
+  if (rmBtn) rmBtn.classList.remove('visible');
+}
+
+// ── VALIDATION ──
+function runVal() {
+  const pitch = v('mpit');
+  const content = v('mcon');
+  const price = v('mp');
+  const target = v('mtg');
+  const badWords = ['wertvoll', 'umfassend', 'intensiv', 'exklusiv', 'holistisch', 'ganzheitlich'];
+  const concreteWords = /\d|Minuten|Stunden|Tage|Wochen|Monate|Schritt|Vorlage|Video|Workbook|PDF|Checklist|Preset|Template|Formel|System/i;
+
+  const checks = [
+    { dot: 'vd1', ok: concreteWords.test(pitch) && pitch.length > 10 },
+    { dot: 'vd2', ok: content.length > 0 && !badWords.some(w => content.toLowerCase().includes(w)) },
+    { dot: 'vd3', ok: price.length > 0 },
+    { dot: 'vd4', ok: target.length > 5 },
+  ];
+
+  checks.forEach(({ dot, ok }) => {
+    const el = document.getElementById(dot);
+    const filled = dot === 'vd1' ? pitch.length > 0 : dot === 'vd2' ? content.length > 0 : dot === 'vd3' ? price.length > 0 : target.length > 0;
+    el.className = 'vdot' + (filled ? (ok ? ' ok' : ' warn') : '');
+  });
+
+  const allOk = checks.every(c => c.ok);
+  document.getElementById('golden').style.display = allOk ? 'block' : 'none';
+}
+
+['mpit','mcon','mp','mtg'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', runVal);
+});
+
+function goldenYes() {
+  const g = document.getElementById('golden');
+  g.style.background = 'linear-gradient(135deg, #edf7ed 0%, #e4f2e4 100%)';
+  g.style.borderColor = '#52b788';
+  g.querySelector('p').textContent = '✓ Super – dein Pitch ist klar und überzeugend.';
+  g.querySelectorAll('.golden-btns button').forEach(b => b.style.display = 'none');
+}
+function goldenNo() {
+  document.getElementById('mpit').focus();
+  document.getElementById('mpit').style.borderColor = 'var(--gold)';
+  document.getElementById('golden').style.display = 'none';
+}
+
+// ── PROMPT ──
 function buildPrompt() {
-  const coverB64 = v(mode === 'mini' ? 'cover-b64' : 'pcover-b64');
-  const coverTag = coverB64 ? `[KURS-COVER: Als <img> Tag einbauen mit src="${coverB64}" style="max-width:100%;border-radius:12px;display:block;margin:0 auto 24px"]` : '';
+  const coverB64 = v('cv-b64');
+  const t1b = v('t1-b64');
+  const t2b = v('t2-b64');
 
-  if (mode === 'mini') {
-    const t1b = v('t1-b64'), t2b = v('t2-b64');
-    const t1img = t1b ? `src="${t1b}"` : '';
-    const t2img = t2b ? `src="${t2b}"` : '';
+  const coverTag = coverB64
+    ? `KURS-COVER BILD: Baue dieses Bild direkt nach der Headline ein als: <img src="${coverB64}" alt="Kurs Cover" style="max-width:100%;border-radius:16px;display:block;margin:24px auto;box-shadow:0 8px 32px rgba(0,0,0,0.12)">`
+    : '';
 
-    return `Du bist ein Top-Copywriter für digitale Miniprodukte im DACH-Raum.
+  const t1photo = t1b
+    ? `<img src="${t1b}" alt="${v('t1n')}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0">`
+    : '';
+  const t2photo = t2b
+    ? `<img src="${t2b}" alt="${v('t2n')}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0">`
+    : '';
 
-Erstelle eine VERKAUFSSTARKE HTML-Checkout-Seite für dieses Miniprodukt.
+  return `Du bist ein erstklassiger Copywriter für digitale Miniprodukte im DACH-Raum.
 
-PRODUKT-DATEN:
+Erstelle eine vollständige, VERKAUFSSTARKE HTML-Checkout-Seite. Das Ergebnis muss optisch MODERN und HOCHWERTIG sein.
+
+PRODUKT:
 - Name: ${v('mn')}
 - Preis: ${v('mp')}€ netto
 - Pitch-Satz: ${v('mpit')}
 - Zielgruppe: ${v('mtg')}
-- Format: ${v('mfmt')}
 - Was ist drin: ${v('mcon')}
+- Format: ${v('mfmt')}
 - Für wen: ${v('mfw')}
 - Häufigster Einwand: ${v('mobj')}
-- Testimonial 1: ${v('t1n') ? v('t1n') + ': "' + v('t1t') + '"' : 'keines'}
-- Testimonial 2: ${v('t2n') ? v('t2n') + ': "' + v('t2t') + '"' : 'keines'}
+- Testimonial 1: ${v('t1n') ? '"' + v('t1t') + '" — ' + v('t1n') : 'keines'}
+- Testimonial 2: ${v('t2n') ? '"' + v('t2t') + '" — ' + v('t2n') : 'keines'}
+
 ${coverTag}
 
-WICHTIG: Das ist ein MINIPRODUKT (Impulskauf unter 97€).
-Kaufentscheidung dauert Sekunden — KEIN langer Text!
+SEITENSTRUKTUR (genau diese 5 Blöcke — nicht mehr, nicht weniger):
 
-PFLICHTSTRUKTUR (genau diese 5 Blöcke, nichts mehr, nichts weniger):
-
-━━━ BLOCK 1: PITCH ━━━
-${coverTag ? '→ Kurs-Cover Bild oben einbauen' : ''}
-→ Der Pitch-Satz groß und prominent
-→ Sofort darunter: erster CTA-Button
+━━━ BLOCK 1: HERO ━━━
+${coverB64 ? '→ Kurs-Cover Bild einbauen (Code oben)' : ''}
+→ Pitch-Satz groß & prominent als Headline
+→ Kurze Subheadline mit Zielgruppe
+→ Erster CTA-Button
 
 ━━━ BLOCK 2: WAS IST DRIN? ━━━
 → Überschrift: "Das bekommst du:"
-→ 3–5 Bullet Points mit ✅
-→ Format: "✅ [Was genau] — [warum das wichtig ist]"
-→ Konkret! Keine weichen Aussagen.
+→ 3–5 Punkte mit ✅ Häkchen
+→ Format pro Punkt: "✅ [Was genau] — [was das dir bringt]"
+→ Konkret! Kein Blabla.
 
 ━━━ BLOCK 3: FÜR WEN? ━━━
-→ 1–2 Sätze, direkt angesprochen
+→ 1–2 Sätze direkt angesprochen
 → "Dieser Kurs ist für dich wenn du... und endlich... willst — ohne..."
 
 ━━━ BLOCK 4: TESTIMONIALS ━━━
-→ Nur wenn angegeben — sonst weglassen
-${t1img ? `→ Testimonial 1 Foto einbauen: <img ${t1img} style="width:48px;height:48px;border-radius:50%;object-fit:cover">` : ''}
-${t2img ? `→ Testimonial 2 Foto einbauen: <img ${t2img} style="width:48px;height:48px;border-radius:50%;object-fit:cover">` : ''}
-→ Format: Rundes Profilfoto + Name + Zitat (Vorher/Nachher mit Ergebnis)
+${t1b || v('t1n') ? `→ Testimonial 1 einbauen${t1photo ? ' mit Foto: ' + t1photo : ''}: "${v('t1t')}" — ${v('t1n')}` : '→ Kein Testimonial 1 vorhanden — weglassen'}
+${t2b || v('t2n') ? `→ Testimonial 2 einbauen${t2photo ? ' mit Foto: ' + t2photo : ''}: "${v('t2t')}" — ${v('t2n')}` : '→ Kein Testimonial 2 vorhanden — weglassen'}
+→ Layout: Rundes Foto links + Name + Zitat rechts (Card-Style)
 
 ━━━ BLOCK 5: PREIS + KAUFBUTTON ━━━
-→ Produktname + Preis klar sichtbar
+→ Produktname prominent
+→ Preis groß und klar sichtbar
 → "Du bekommst sofort Zugang per E-Mail"
-→ 3 Button-Varianten anzeigen:
-   - "Ja, ich will [konkretes Ergebnis] →"
-   - "Sofort Zugang sichern →"
-   - "Ich starte jetzt →"
+→ 3 Button-Varianten übereinander:
+   Option A: "Ja, ich will [konkretes Ergebnis aus dem Pitch] →"
+   Option B: "Sofort Zugang sichern →"
+   Option C: "Ich starte jetzt →"
 
-WAS KOMPLETT WEGBLEIBT:
-❌ Kein langer Problem-Block
-❌ Keine Über-mich-Story
-❌ Kein FAQ
-❌ Keine Dringlichkeit (außer wenn echt)
-❌ Keine langen Einleitungen
+WAS WEGBLEIBT: ❌ Kein langer Problem-Block ❌ Keine Über-mich-Story ❌ Kein FAQ ❌ Keine Fake-Dringlichkeit
 
-DESIGN:
-- Button-Farbe: #a26a25
-- Fonts: Google Fonts Montserrat + Cormorant Garamond italic für Headlines
-- Sauber, modern, warm — keine grellen Farben
-- Vollständig responsive, perfekt auf Mobile
-- Viel Weißraum zwischen den Blöcken
+DESIGN-ANFORDERUNGEN (sehr wichtig!):
+- Google Fonts: Montserrat (400,500,600,700) + Cormorant Garamond italic für Headlines
+- Farbpalette: Hintergrund #f8f7f4, Karten #ffffff, Akzent #a26a25, Text #1e1d1a
+- Buttons: Gradient von #a26a25 zu #8d5a1e, border-radius 12px, box-shadow
+- Karten: weißer Hintergrund, border-radius 20px, dezenter Schatten
+- Viel Weißraum, klare Typografie, keine überladenen Elemente
+- Section-Trennungen mit elegantem Spacing
+- Vollständig responsive — perfekt auf Mobile (375px)
+- Hover-Effekte auf Buttons und interaktiven Elementen
 
-NUR HTML zurückgeben. Kein Markdown. Direkt mit <!DOCTYPE html> starten.`;
+Die Seite muss aussehen wie eine professionelle, teure Salespage — nicht wie ein Template.
 
-  } else {
-    const pt1b = v('pt1-b64'), pt2b = v('pt2-b64');
-    const pt1img = pt1b ? `src="${pt1b}"` : '';
-    const pt2img = pt2b ? `src="${pt2b}"` : '';
-
-    return `Du bist ein Top-Copywriter für digitale Produkte im DACH-Raum.
-
-Erstelle eine vollständige, verkaufsstarke HTML-Salespage für dieses Hauptprodukt.
-
-PRODUKT-DATEN:
-- Name: ${v('pn')}
-- Preis: ${v('pp')}€ netto ${v('pold') ? '(regulär: ' + v('pold') + ')' : ''}
-- Headline: ${v('phl')}
-- Zielgruppe: ${v('ptg')}
-- Problem vorher: ${v('pprob')}
-- Transformation danach: ${v('ptrans')}
-- Module/Inhalte: ${v('pcon')}
-- Story & Credibility: ${v('pstory')}
-- Garantie: ${v('pgar') || 'keine'}
-- Einwände: ${v('pobj')}
-- Testimonial 1: ${v('pt1n') ? v('pt1n') + ': "' + v('pt1t') + '"' : 'keines'}
-- Testimonial 2: ${v('pt2n') ? v('pt2n') + ': "' + v('pt2t') + '"' : 'keines'}
-${coverTag}
-
-PFLICHTSTRUKTUR (genau in dieser Reihenfolge):
-
-1. HERO
-${coverTag ? '→ Kurs-Cover Bild einbauen' : ''}
-→ Headline: "In [Zeitraum] [Ergebnis] — auch wenn du [Einwand]"
-→ Subheadline mit Zielgruppe
-→ CTA-Button
-
-2. PROBLEM "Kennst du das?"
-→ Schmerz als emotionaler FLIESSTEXT — kein Bullet-Listen!
-→ So genau beschrieben dass die Person denkt: "Das bin ich"
-
-3. MINDSHIFT
-→ "Dabei ist es so:" — alte Denkweise vs. neue Wahrheit
-→ z.B. "Du brauchst keine 10k Follower"
-
-4. TRANSFORMATION "Stell dir vor..."
-→ Emotional, konkret, lebendig
-→ CTA-Button
-
-5. FÜR WEN?
-→ ✅ Für dich wenn... (3 Punkte)
-→ ❌ Nicht für dich wenn... (2 Punkte)
-
-6. WAS IST DRIN?
-→ Alle Module mit ✓ und konkreter Beschreibung
-→ Wert wenn angegeben
-
-7. ÜBER MICH
-→ Kurze Story, Credibility, warum ich die richtige Person bin
-
-8. TESTIMONIALS
-${pt1img ? `→ Testimonial 1 Foto: <img ${pt1img} style="width:56px;height:56px;border-radius:50%;object-fit:cover">` : ''}
-${pt2img ? `→ Testimonial 2 Foto: <img ${pt2img} style="width:56px;height:56px;border-radius:50%;object-fit:cover">` : ''}
-→ Rundes Profilfoto + Name + Vorher/Nachher Zitat
-
-9. PREIS
-→ Wert-Gegenüberstellung, Streichpreis, Garantie
-→ CTA-Button
-
-10. FAQ
-→ 3–4 Einwände verständnisvoll beantworten
-
-11. FINALER CTA
-
-SCHREIBREGELN:
-- Deutsch, Du-Form, kurze Sätze, empowernd ohne Druck
-- Verboten: hustlen, Buzzwords, leere Phrasen
-- Button-Farbe: #a26a25
-- Fonts: Montserrat + Cormorant Garamond italic
-- Vollständig responsive
-- CTA-Buttons aktiv: "Jetzt freischalten", "Ich bin dabei!"
-
-NUR HTML. Direkt mit <!DOCTYPE html> starten.`;
-  }
+WICHTIG: Die Antwort beginnt mit <!DOCTYPE html> und endet mit </html>.
+Absolut kein Text, kein Markdown, keine Erklärungen davor oder danach.`;
 }
 
 // ── GENERATE ──
 async function generate() {
-  if (mode === 'mini') {
-    if (!v('mn') || !v('mp') || !v('mpit') || !v('mtg') || !v('mcon')) {
-      alert('Bitte fülle alle Pflichtfelder aus (Name, Preis, Pitch, Zielgruppe, Inhalte).');
-      return;
-    }
-  } else {
-    if (!v('pn') || !v('pp') || !v('phl') || !v('ptg') || !v('pcon')) {
-      alert('Bitte fülle alle Pflichtfelder aus.');
-      return;
-    }
+  if (!v('mn') || !v('mp') || !v('mpit') || !v('mtg') || !v('mcon')) {
+    alert('Bitte fülle aus: Produktname, Preis, Pitch-Satz, Zielgruppe und Inhalte.');
+    return;
   }
 
   const btn = document.getElementById('btn');
@@ -641,7 +729,12 @@ async function generate() {
   btn.disabled = true;
   btn.textContent = 'Wird erstellt...';
   result.style.display = 'block';
-  inner.innerHTML = `<div class="ldbox"><div class="spin"></div><p class="ldtxt">Salespage wird geschrieben – ca. 25–35 Sekunden...</p></div>`;
+  inner.innerHTML = `
+    <div class="ldbox">
+      <div class="spin"></div>
+      <p class="ldtxt">Salespage wird geschrieben...</p>
+      <p class="ldstep">ca. 25–35 Sekunden</p>
+    </div>`;
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 
   try {
@@ -655,14 +748,15 @@ async function generate() {
     lastHTML = json.html;
 
     inner.innerHTML = `
-      <div class="ok-badge">✓ Salespage fertig!</div>
-      <p class="res-note">HTML kopieren → direkt in Elopage, ThriveCart oder Kajabi einbauen. Oder Datei herunterladen.</p>
+      <div class="ok-badge"><span class="ok-ico">✓</span> Salespage fertig!</div>
+      <p class="res-note">HTML kopieren und direkt in Elopage, ThriveCart oder Kajabi einbauen.<br>Oder als Datei herunterladen.</p>
       <div class="res-btns">
         <button class="btn-copy" onclick="copyHTML()">HTML kopieren</button>
         <button class="btn-dl" onclick="dlHTML()">Datei herunterladen</button>
         <button class="btn-rst" onclick="resetAll()">Neu erstellen</button>
       </div>
-      <div class="res-pre">${esc(lastHTML.substring(0,2000))}${lastHTML.length>2000?'\n\n...+'+Math.round((lastHTML.length-2000)/1000)+'k Zeichen':''}</div>`;
+      <div class="res-pre">${esc(lastHTML.substring(0,1800))}${lastHTML.length>1800?'\n\n... +'+Math.round((lastHTML.length-1800)/1000)+'k Zeichen – Datei herunterladen für vollständigen Code':''}</div>`;
+
   } catch(err) {
     inner.innerHTML = `<div class="errbox">Fehler: ${err.message}</div>`;
   } finally {
@@ -675,7 +769,9 @@ const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;
 
 function copyHTML() {
   if (!lastHTML) return;
-  navigator.clipboard.writeText(lastHTML).then(() => alert('✓ HTML kopiert!')).catch(() => alert('Manuell kopieren.'));
+  navigator.clipboard.writeText(lastHTML)
+    .then(() => alert('✓ HTML kopiert!'))
+    .catch(() => alert('Bitte manuell aus der Vorschau kopieren.'));
 }
 
 function dlHTML() {
@@ -684,7 +780,7 @@ function dlHTML() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  const name = (mode==='mini'?v('mn'):v('pn')||'salespage').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  const name = (v('mn') || 'salespage').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
   a.download = `salespage-${name}.html`;
   a.click();
   URL.revokeObjectURL(url);
@@ -692,20 +788,14 @@ function dlHTML() {
 
 function resetAll() {
   lastHTML = '';
-  goldenPassed = false;
   document.getElementById('result').style.display = 'none';
   document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(el => el.value = '');
   document.querySelectorAll('input[type=hidden]').forEach(el => el.value = '');
-  ['cover-drop','t1-drop','t2-drop','pcover-drop','pt1-drop','pt2-drop'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      const isAvatar = el.style.minHeight === '70px';
-      el.innerHTML = isAvatar
-        ? `<span class="ico" style="font-size:18px">👤</span><span class="idrop-txt" style="font-size:10px">Profilfoto</span>`
-        : `<span class="ico">🖼</span><span class="idrop-txt">Bild hier ablegen oder klicken</span><span class="idrop-sub">JPG, PNG · max. 2 MB</span>`;
-      el.classList.remove('has-img');
-    }
+  ['cv','t1','t2'].forEach(id => {
+    const isAvatar = id !== 'cv';
+    removeImg(`${id}-drop`, `${id}-inp`, `${id}-b64`, `${id}-rm`, isAvatar);
   });
+  document.getElementById('golden').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
