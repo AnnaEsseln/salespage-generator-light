@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salespage Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ebe9e2;
+      --gold: #a26a25;
+      --gold-dark: #8d5a1e;
+      --gold-light: #fdf6ee;
+      --white: #ffffff;
+      --text: #2c2b28;
+      --text-mid: #6b6760;
+      --text-soft: #8a8278;
+      --border: #d4cfc6;
+      --input-bg: #f5f3ee;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 48px 16px 80px;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; }
+
+    /* HEADER */
+    .header { text-align: center; margin-bottom: 36px; }
+    .top-line { width: 44px; height: 1px; background: var(--gold); margin: 0 auto 32px; }
+    .main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 7vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .main-title em { color: var(--gold); font-style: italic; }
+    .sub-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .intro-text {
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text-mid);
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* CARD */
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+      padding: 36px 40px;
+    }
+
+    .card-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    /* FIELDS */
+    .field { margin-bottom: 18px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .lbl-hint {
+      font-size: 10px; letter-spacing: 0;
+      font-weight: 400; color: #b0aa9e;
+      text-transform: none;
+    }
+
+    input[type=text], input[type=number], textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+      resize: vertical;
+    }
+    input:focus, textarea:focus { border-color: var(--gold); }
+    textarea { min-height: 76px; line-height: 1.6; }
+
+    .divider { height: 1px; background: var(--bg); margin: 22px 0; }
+
+    /* BUTTON */
+    .btn-generate {
+      width: 100%;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 17px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      margin-top: 24px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-generate:hover { background: var(--gold-dark); }
+    .btn-generate:active { transform: scale(0.99); }
+    .btn-generate:disabled { background: var(--border); cursor: not-allowed; }
+
+    /* RESULT */
+    .result { display: none; margin-top: 28px; }
+
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eef7ee;
+      border: 1px solid #b8dbb8;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #3a7a3a;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .result-note {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .btn-copy {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-copy:hover { background: var(--gold-dark); }
+
+    .btn-dl {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-dl:hover { background: var(--gold-light); }
+
+    .btn-reset {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .result-preview {
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      font-size: 12px;
+      color: var(--text-soft);
+      font-family: monospace;
+      max-height: 260px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    /* LOADING */
+    .loading-box {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .spinner {
+      width: 34px; height: 34px;
+      border: 2px solid var(--border);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 14px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 13px; color: var(--text-soft); }
+
+    .error-box {
+      background: #fff5f5;
+      border: 1px solid #f5c6c6;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #c0392b;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 560px) {
+      .card { padding: 24px 20px; }
+      .row2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="top-line"></div>
+    <h1 class="main-title">Dein <em>Salespage</em><br>Generator</h1>
+    <p class="sub-label">6 Felder · Fertige Salespage</p>
+    <p class="intro-text">
+      Fülle die 6 Felder aus – fertig.<br>
+      Das Tool schreibt dir die komplette Salespage.
+    </p>
+  </div>
+
+  <div class="card">
+    <p class="card-label">Dein Miniprodukt</p>
+
+    <div class="row2">
+      <div class="field">
+        <label>Produktname</label>
+        <input type="text" id="name" placeholder="z.B. Buchungs-Booster">
+      </div>
+      <div class="field">
+        <label>Preis <span class="lbl-hint">(netto in €)</span></label>
+        <input type="number" id="price" placeholder="27">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Zielgruppe <span class="lbl-hint">(1 Satz)</span></label>
+      <input type="text" id="target" placeholder="z.B. Fotografinnen, die ihr Wissen als digitales Produkt verkaufen wollen">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field">
+      <label>Das eine Ergebnis danach <span class="lbl-hint">(konkret & greifbar)</span></label>
+      <input type="text" id="outcome" placeholder="z.B. Du hast dein erstes digitales Produkt live und die ersten Verkäufe kommen automatisch">
+    </div>
+
+    <div class="field">
+      <label>Das größte Problem vorher</label>
+      <textarea id="problem" placeholder="z.B. Du postest täglich, aber niemand bucht – und du weißt nicht warum..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Was ist drin? <span class="lbl-hint">(2–3 Stichpunkte reichen)</span></label>
+      <textarea id="content" placeholder="z.B.&#10;Modul 1: Produktidee finden&#10;Modul 2: Inhalte mit KI erstellen&#10;Bonus: 30 fertige Prompts"></textarea>
+    </div>
+
+    <button class="btn-generate" id="btn" onclick="generate()">
+      Salespage generieren ✦
+    </button>
+
+    <div class="result" id="result">
+      <div id="result-inner"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let lastHTML = '';
+
+const v = id => (document.getElementById(id)?.value || '').trim();
+
+async function generate() {
+  const name = v('name');
+  const price = v('price');
+  const target = v('target');
+  const outcome = v('outcome');
+  const problem = v('problem');
+  const content = v('content');
+
+  if (!name || !price || !target || !outcome || !problem || !content) {
+    alert('Bitte fülle alle 6 Felder aus.');
+    return;
+  }
+
+  const btn = document.getElementById('btn');
+  const result = document.getElementById('result');
+  const inner = document.getElementById('result-inner');
+
+  btn.disabled = true;
+  btn.textContent = 'Wird erstellt...';
+  result.style.display = 'block';
+  inner.innerHTML = `
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p class="loading-text">Salespage wird geschrieben – ca. 20 Sekunden...</p>
+    </div>`;
+
+  const prompt = `Du bist ein Top-Copywriter für digitale Miniprodukte im DACH-Raum.
+
+Erstelle eine vollständige, verkaufsstarke HTML-Salespage für dieses Produkt:
+
+- Name: ${name}
+- Preis: ${price}€ netto
+- Zielgruppe: ${target}
+- Das eine Ergebnis danach: ${outcome}
+- Das größte Problem vorher: ${problem}
+- Was ist drin: ${content}
+
+STRUKTUR (genau in dieser Reihenfolge):
+1. Hero: Starker Hook-Satz + Versprechen + CTA-Button
+2. Trust-Banner: 1-2 kurze Social-Proof-Zahlen (erfinde plausible, falls keine angegeben)
+3. Pain-Section "Kennst du das?": Das Problem als emotionaler Fließtext – kein Bullet-List
+4. Mindshift: Alte Denkweise → neue Wahrheit (z.B. "Du brauchst keine 10k Follower")
+5. Wunschzustand "Stell dir vor...": Emotional, konkret, lebendig
+6. Produkt-Reveal: Name + Inhalte mit ✓ Häkchen
+7. Preis-Sektion: Preis, CTA-Button
+8. FAQ: 3 kurze Einwände + Antworten
+9. Finaler CTA
+
+REGELN:
+- Sprache: Deutsch, Du-Form, kurze Sätze
+- Tonalität: empowernd, klar, motivierend – kein Druck
+- Button-Farbe: #a26a25
+- Fonts: Google Fonts Montserrat + Cormorant Garamond italic für Headlines
+- Vollständig responsive
+- Ein 12-Jähriger muss verstehen was verkauft wird und was sich danach ändert
+- Verboten: hustlen, Buzzwords, leere Phrasen
+
+Gib NUR das HTML zurück. Kein Markdown. Kein Text davor oder danach.
+Starte direkt mit <!DOCTYPE html>`;
+
+  try {
+    const res = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'API-Fehler ' + res.status);
+    }
+
+    const json = await res.json();
+    lastHTML = json.html;
+
+    inner.innerHTML = `
+      <div class="success-badge">✓ Salespage fertig!</div>
+      <p class="result-note">Kopiere das HTML oder lade die Datei herunter – direkt in Elopage, ThriveCart oder Kajabi einbauen.</p>
+      <div class="result-actions">
+        <button class="btn-copy" onclick="copyHTML()">HTML kopieren</button>
+        <button class="btn-dl" onclick="downloadHTML()">Datei herunterladen</button>
+        <button class="btn-reset" onclick="reset()">Neu erstellen</button>
+      </div>
+      <div class="result-preview">${escapeHTML(lastHTML.substring(0, 2000))}${lastHTML.length > 2000 ? '\n\n... +' + Math.round((lastHTML.length - 2000)/1000) + 'k Zeichen – lade die Datei für vollständigen Code' : ''}</div>
+    `;
+
+  } catch (err) {
+    inner.innerHTML = `<div class="error-box">Fehler: ${err.message}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Salespage generieren ✦';
+  }
+}
+
+function escapeHTML(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function copyHTML() {
+  if (!lastHTML) return;
+  navigator.clipboard.writeText(lastHTML)
+    .then(() => alert('✓ HTML kopiert!'))
+    .catch(() => alert('Bitte manuell aus der Vorschau kopieren.'));
+}
+
+function downloadHTML() {
+  if (!lastHTML) return;
+  const blob = new Blob([lastHTML], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const name = (document.getElementById('name')?.value || 'salespage')
+    .toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  a.download = `salespage-${name}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function reset() {
+  lastHTML = '';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('result-inner').innerHTML = '';
+  ['name','price','target','outcome','problem','content'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
