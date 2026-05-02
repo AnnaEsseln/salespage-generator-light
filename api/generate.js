@@ -7,10 +7,7 @@ export default async function handler(req, res) {
   if (!prompt) return res.status(400).json({ error: 'Prompt fehlt' });
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  
-  if (!apiKey) {
-    return res.status(500).json({ error: 'API Key nicht gefunden in Vercel' });
-  }
+  if (!apiKey) return res.status(500).json({ error: 'API Key fehlt' });
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -28,12 +25,9 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
-      return res.status(response.status).json({ 
-        error: JSON.stringify(data),
-        apiKeyPrefix: apiKey.substring(0, 20) + '...'
-      });
+      return res.status(response.status).json({ error: JSON.stringify(data) });
     }
 
     const html = data.content.map(b => b.text || '').join('');

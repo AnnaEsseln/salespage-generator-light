@@ -7,400 +7,288 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #ebe9e2;
-      --gold: #a26a25;
-      --gold-dark: #8d5a1e;
-      --gold-light: #fdf6ee;
-      --white: #ffffff;
-      --text: #2c2b28;
-      --text-mid: #6b6760;
-      --text-soft: #8a8278;
-      --border: #d4cfc6;
-      --input-bg: #f5f3ee;
+      --bg: #ebe9e2; --gold: #a26a25; --gold-dark: #8d5a1e; --gold-light: #fdf6ee;
+      --white: #ffffff; --text: #2c2b28; --text-mid: #6b6760; --text-soft: #8a8278;
+      --border: #d4cfc6; --input-bg: #f5f3ee;
     }
-
-    body {
-      background: var(--bg);
-      font-family: 'Montserrat', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      padding: 48px 16px 80px;
-    }
-
+    body { background: var(--bg); font-family: 'Montserrat', sans-serif; color: var(--text); min-height: 100vh; padding: 48px 16px 80px; }
     .container { max-width: 680px; margin: 0 auto; }
-
-    /* HEADER */
     .header { text-align: center; margin-bottom: 36px; }
     .top-line { width: 44px; height: 1px; background: var(--gold); margin: 0 auto 32px; }
-    .main-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 7vw, 64px);
-      font-weight: 400;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
+    .main-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 7vw, 64px); font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 12px; }
     .main-title em { color: var(--gold); font-style: italic; }
-    .sub-label {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .intro-text {
-      font-size: 13px;
-      line-height: 1.75;
-      color: var(--text-mid);
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    /* CARD */
-    .card {
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
-      padding: 36px 40px;
-    }
-
-    .card-label {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 28px;
-    }
-
-    /* FIELDS */
-    .field { margin-bottom: 18px; }
-    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    label {
-      display: block;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--text-soft);
-      text-transform: uppercase;
-      margin-bottom: 7px;
-    }
-    .lbl-hint {
-      font-size: 10px; letter-spacing: 0;
-      font-weight: 400; color: #b0aa9e;
-      text-transform: none;
-    }
-
+    .sub-label { font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+    .intro-text { font-size: 13px; line-height: 1.75; color: var(--text-mid); max-width: 420px; margin: 0 auto; }
+    .card { background: var(--white); border-radius: 20px; box-shadow: 0 2px 24px rgba(0,0,0,0.07); padding: 36px 40px; }
+    .type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+    .type-btn { border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; cursor: pointer; background: var(--input-bg); transition: all 0.15s; text-align: left; }
+    .type-btn:hover { border-color: var(--gold); }
+    .type-btn.sel { border-color: var(--gold); background: var(--gold-light); }
+    .type-btn-label { display: block; font-size: 9px; letter-spacing: 0.12em; color: var(--gold); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+    .type-btn strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+    .type-btn small { font-size: 11px; color: var(--text-soft); }
+    .card-label { font-size: 10px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
+    .field { margin-bottom: 16px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--text-soft); text-transform: uppercase; margin-bottom: 6px; }
+    .lbl-hint { font-size: 10px; letter-spacing: 0; font-weight: 400; color: #b0aa9e; text-transform: none; }
     input[type=text], input[type=number], textarea {
-      width: 100%;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 11px 15px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.15s;
-      resize: vertical;
+      width: 100%; background: var(--input-bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 11px 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--text);
+      outline: none; transition: border-color 0.15s; resize: vertical;
     }
     input:focus, textarea:focus { border-color: var(--gold); }
-    textarea { min-height: 76px; line-height: 1.6; }
-
-    .divider { height: 1px; background: var(--bg); margin: 22px 0; }
-
-    /* BUTTON */
+    textarea { min-height: 72px; line-height: 1.6; }
+    .divider { height: 1px; background: var(--bg); margin: 20px 0; }
     .btn-generate {
-      width: 100%;
-      background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      padding: 17px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      letter-spacing: 0.04em;
-      margin-top: 24px;
-      transition: background 0.15s, transform 0.1s;
+      width: 100%; background: var(--gold); color: #fff; border: none; border-radius: 12px;
+      padding: 17px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.04em; margin-top: 20px; transition: background 0.15s, transform 0.1s;
     }
     .btn-generate:hover { background: var(--gold-dark); }
     .btn-generate:active { transform: scale(0.99); }
     .btn-generate:disabled { background: var(--border); cursor: not-allowed; }
-
-    /* RESULT */
-    .result { display: none; margin-top: 28px; }
-
-    .success-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #eef7ee;
-      border: 1px solid #b8dbb8;
-      border-radius: 8px;
-      padding: 10px 16px;
-      font-size: 13px;
-      color: #3a7a3a;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .result-note {
-      font-size: 13px;
-      color: var(--text-mid);
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .result-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .btn-copy {
-      background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 24px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
+    .result { display: none; margin-top: 24px; }
+    .success-badge { display: inline-flex; align-items: center; gap: 8px; background: #eef7ee; border: 1px solid #b8dbb8; border-radius: 8px; padding: 10px 16px; font-size: 13px; color: #3a7a3a; font-weight: 600; margin-bottom: 14px; }
+    .result-note { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 14px; }
+    .result-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+    .btn-copy { background: var(--gold); color: #fff; border: none; border-radius: 10px; padding: 11px 22px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
     .btn-copy:hover { background: var(--gold-dark); }
-
-    .btn-dl {
-      background: transparent;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      border-radius: 10px;
-      padding: 12px 24px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
+    .btn-dl { background: transparent; color: var(--gold); border: 1px solid var(--gold); border-radius: 10px; padding: 11px 22px; font-family: 'Montserrat', sans-serif; font-size: 13px; cursor: pointer; transition: background 0.15s; }
     .btn-dl:hover { background: var(--gold-light); }
-
-    .btn-reset {
-      background: transparent;
-      color: var(--text-soft);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 20px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .result-preview {
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px;
-      font-size: 12px;
-      color: var(--text-soft);
-      font-family: monospace;
-      max-height: 260px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      word-break: break-word;
-      line-height: 1.6;
-    }
-
-    /* LOADING */
-    .loading-box {
-      text-align: center;
-      padding: 40px 0;
-    }
-    .spinner {
-      width: 34px; height: 34px;
-      border: 2px solid var(--border);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 14px;
-    }
+    .btn-reset { background: transparent; color: var(--text-soft); border: 1px solid var(--border); border-radius: 10px; padding: 11px 18px; font-family: 'Montserrat', sans-serif; font-size: 13px; cursor: pointer; }
+    .result-preview { background: var(--input-bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; font-size: 12px; color: var(--text-soft); font-family: monospace; max-height: 240px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; line-height: 1.6; }
+    .loading-box { text-align: center; padding: 40px 0; }
+    .spinner { width: 34px; height: 34px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-text { font-size: 13px; color: var(--text-soft); }
-
-    .error-box {
-      background: #fff5f5;
-      border: 1px solid #f5c6c6;
-      border-radius: 10px;
-      padding: 14px 18px;
-      font-size: 13px;
-      color: #c0392b;
-      margin-top: 16px;
-    }
-
-    @media (max-width: 560px) {
-      .card { padding: 24px 20px; }
-      .row2 { grid-template-columns: 1fr; }
-    }
+    .error-box { background: #fff5f5; border: 1px solid #f5c6c6; border-radius: 10px; padding: 14px 18px; font-size: 13px; color: #c0392b; margin-top: 14px; }
+    @media (max-width: 560px) { .card { padding: 24px 20px; } .row2 { grid-template-columns: 1fr; } .type-selector { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-
 <div class="container">
-
   <div class="header">
     <div class="top-line"></div>
     <h1 class="main-title">Dein <em>Salespage</em><br>Generator</h1>
-    <p class="sub-label">6 Felder · Fertige Salespage</p>
-    <p class="intro-text">
-      Fülle die 6 Felder aus – fertig.<br>
-      Das Tool schreibt dir die komplette Salespage.
-    </p>
+    <p class="sub-label">Miniprodukt · Checkout · Hauptkurs</p>
+    <p class="intro-text">Wähle den Typ, fülle die Felder aus – fertig.<br>Das Tool schreibt dir die komplette Salespage.</p>
   </div>
 
   <div class="card">
-    <p class="card-label">Dein Miniprodukt</p>
+    <p class="card-label">Was möchtest du erstellen?</p>
+    <div class="type-selector">
+      <button class="type-btn sel" onclick="selType(this,'mini')">
+        <span class="type-btn-label">Impulsprodukt</span>
+        <strong>Minikurs / Checkout-Seite</strong>
+        <small>7€ – 97€ · kurz & konkret</small>
+      </button>
+      <button class="type-btn" onclick="selType(this,'main')">
+        <span class="type-btn-label">Hauptprodukt</span>
+        <strong>Kurs / Coaching Salespage</strong>
+        <small>97€+ · ausführlich & überzeugend</small>
+      </button>
+    </div>
 
-    <div class="row2">
-      <div class="field">
-        <label>Produktname</label>
-        <input type="text" id="name" placeholder="z.B. Buchungs-Booster">
+    <!-- MINI FELDER -->
+    <div id="fields-mini">
+      <p class="card-label">Dein Miniprodukt</p>
+      <div class="row2">
+        <div class="field"><label>Produktname</label><input type="text" id="m-name" placeholder="z.B. Buchungs-Booster"></div>
+        <div class="field"><label>Preis <span class="lbl-hint">(netto €)</span></label><input type="number" id="m-price" placeholder="27"></div>
       </div>
       <div class="field">
-        <label>Preis <span class="lbl-hint">(netto in €)</span></label>
-        <input type="number" id="price" placeholder="27">
+        <label>1-Satz-Pitch <span class="lbl-hint">(was bekommt jemand konkret?)</span></label>
+        <input type="text" id="m-pitch" placeholder="z.B. 5 fertige Reels-Skripte die deine Wunschkunden anziehen – in 10 Minuten einsatzbereit">
+      </div>
+      <div class="field"><label>Zielgruppe</label><input type="text" id="m-target" placeholder="z.B. Fotografinnen die über Instagram buchen wollen"></div>
+      <div class="divider"></div>
+      <div class="field">
+        <label>Was ist drin? <span class="lbl-hint">(3–5 Stichpunkte)</span></label>
+        <textarea id="m-content" placeholder="z.B.&#10;5 fertige Reel-Skripte zum Befüllen&#10;Hook-Vorlagen für jede Situation&#10;Beispiel-Reels die täglich Anfragen bringen"></textarea>
+      </div>
+      <div class="field">
+        <label>Für wen? <span class="lbl-hint">(und für wen nicht)</span></label>
+        <textarea id="m-forwho" placeholder="z.B.&#10;Für dich wenn: du endlich über Social Media buchst&#10;Nicht für dich wenn: du keine Instagram-Präsenz hast"></textarea>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Testimonial 1 <span class="lbl-hint">(optional)</span></label><textarea id="m-t1" placeholder="z.B. Lisa: In der ersten Woche 3 Anfragen!"></textarea></div>
+        <div class="field"><label>Testimonial 2 <span class="lbl-hint">(optional)</span></label><textarea id="m-t2" placeholder="z.B. Sarah: Endlich weiß ich was ich posten soll"></textarea></div>
       </div>
     </div>
 
-    <div class="field">
-      <label>Zielgruppe <span class="lbl-hint">(1 Satz)</span></label>
-      <input type="text" id="target" placeholder="z.B. Fotografinnen, die ihr Wissen als digitales Produkt verkaufen wollen">
+    <!-- MAIN FELDER -->
+    <div id="fields-main" style="display:none">
+      <p class="card-label">Dein Hauptprodukt</p>
+      <div class="row2">
+        <div class="field"><label>Produktname</label><input type="text" id="p-name" placeholder="z.B. Passives Einkommen für Fotografinnen"></div>
+        <div class="field"><label>Preis <span class="lbl-hint">(netto €)</span></label><input type="number" id="p-price" placeholder="297"></div>
+      </div>
+      <div class="field">
+        <label>Headline-Versprechen <span class="lbl-hint">(Ergebnis + Zeitraum)</span></label>
+        <input type="text" id="p-headline" placeholder="z.B. In 30 Tagen dein erstes digitales Produkt erstellen und verkaufen">
+      </div>
+      <div class="field"><label>Zielgruppe</label><input type="text" id="p-target" placeholder="z.B. Fotografinnen die ihr Wissen als Kurs verkaufen wollen"></div>
+      <div class="divider"></div>
+      <div class="row2">
+        <div class="field"><label>Das Problem vorher</label><textarea id="p-problem" placeholder="z.B. Du weißt dass du Wissen hast das anderen hilft – aber das Produkt entsteht nicht..."></textarea></div>
+        <div class="field"><label>Die Transformation danach</label><textarea id="p-transform" placeholder="z.B. Du hast ein fertiges Produkt das verkauft – ohne täglich neue Kunden zu suchen"></textarea></div>
+      </div>
+      <div class="field">
+        <label>Module / Inhalte</label>
+        <textarea id="p-content" placeholder="z.B.&#10;Modul 1: Deine Produktidee (Wert 99€)&#10;Modul 2: Inhalte mit KI erstellen&#10;Modul 3: Salespage & Checkout&#10;Bonus: 50 Prompts (Wert 29€)"></textarea>
+      </div>
+      <div class="field">
+        <label>Deine Story & Credibility</label>
+        <textarea id="p-story" placeholder="z.B. Ich bin [Name]. 2022 hab ich meinen ersten Kurs für 97€ verkauft – mit 400 Followern. Heute sind es 200+ Kundinnen."></textarea>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Testimonial 1</label><textarea id="p-t1" placeholder="z.B. Lisa: 570€ in der ersten Woche nach dem Launch"></textarea></div>
+        <div class="field"><label>Testimonial 2</label><textarea id="p-t2" placeholder="z.B. Mel: 18.000€ am Launch-Tag"></textarea></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Häufigste Einwände</label><textarea id="p-objections" placeholder="z.B.&#10;Ich hab keine Zeit&#10;Ich bin Anfänger&#10;Ich hab zu wenig Follower"></textarea></div>
+        <div class="field">
+          <label>Streichpreis <span class="lbl-hint">(optional)</span></label>
+          <input type="text" id="p-oldprice" placeholder="z.B. statt 497€">
+          <label style="margin-top:10px">Garantie <span class="lbl-hint">(optional)</span></label>
+          <input type="text" id="p-guarantee" placeholder="z.B. 14-Tage Geld-zurück">
+        </div>
+      </div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="field">
-      <label>Das eine Ergebnis danach <span class="lbl-hint">(konkret & greifbar)</span></label>
-      <input type="text" id="outcome" placeholder="z.B. Du hast dein erstes digitales Produkt live und die ersten Verkäufe kommen automatisch">
-    </div>
-
-    <div class="field">
-      <label>Das größte Problem vorher</label>
-      <textarea id="problem" placeholder="z.B. Du postest täglich, aber niemand bucht – und du weißt nicht warum..."></textarea>
-    </div>
-
-    <div class="field">
-      <label>Was ist drin? <span class="lbl-hint">(2–3 Stichpunkte reichen)</span></label>
-      <textarea id="content" placeholder="z.B.&#10;Modul 1: Produktidee finden&#10;Modul 2: Inhalte mit KI erstellen&#10;Bonus: 30 fertige Prompts"></textarea>
-    </div>
-
-    <button class="btn-generate" id="btn" onclick="generate()">
-      Salespage generieren ✦
-    </button>
-
-    <div class="result" id="result">
-      <div id="result-inner"></div>
-    </div>
-
+    <button class="btn-generate" id="btn" onclick="generate()">Salespage generieren ✦</button>
+    <div class="result" id="result"><div id="result-inner"></div></div>
   </div>
 </div>
 
 <script>
 let lastHTML = '';
+let currentType = 'mini';
+
+function selType(el, type) {
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+  currentType = type;
+  document.getElementById('fields-mini').style.display = type === 'mini' ? 'block' : 'none';
+  document.getElementById('fields-main').style.display = type === 'main' ? 'block' : 'none';
+}
 
 const v = id => (document.getElementById(id)?.value || '').trim();
 
-async function generate() {
-  const name = v('name');
-  const price = v('price');
-  const target = v('target');
-  const outcome = v('outcome');
-  const problem = v('problem');
-  const content = v('content');
+function buildPrompt() {
+  if (currentType === 'mini') {
+    return `Du bist ein Top-Copywriter für digitale Miniprodukte im DACH-Raum.
 
-  if (!name || !price || !target || !outcome || !problem || !content) {
-    alert('Bitte fülle alle 6 Felder aus.');
-    return;
+Erstelle eine verkaufsstarke HTML-Checkout-Seite für dieses Miniprodukt.
+
+PRODUKT:
+- Name: ${v('m-name')}
+- Preis: ${v('m-price')}€ netto
+- 1-Satz-Pitch: ${v('m-pitch')}
+- Zielgruppe: ${v('m-target')}
+- Was ist drin: ${v('m-content')}
+- Für wen / nicht für wen: ${v('m-forwho')}
+- Testimonial 1: ${v('m-t1') || 'keines'}
+- Testimonial 2: ${v('m-t2') || 'keines'}
+
+WICHTIG: Das ist ein MINIPRODUKT (Impulskauf unter 97€).
+Menschen kaufen das in Sekunden – KEINE langen Texte!
+Die Seite muss kurz, konkret und sofort überzeugend sein.
+
+PFLICHTSTRUKTUR:
+1. PITCH-ZEILE (1 Satz ganz oben) – das konkrete Ergebnis, ultraklar
+2. WAS IST DRIN? – 3–5 Bullet Points mit ✅, konkret
+3. FÜR WEN? – 2–3 Zeilen, für wen ja / für wen nein
+4. TESTIMONIALS – nur wenn angegeben, spezifisch mit Ergebnis
+5. PREIS + KAUFBUTTON – klar sichtbar, aktiver Button-Text
+
+KEIN langer Problem-Block. KEINE Story. KEIN ausführliches FAQ.
+Kurz. Konkret. Impulskauf.
+
+Sprache: Deutsch, Du-Form, kurze Sätze, empowernd ohne Druck.
+Button-Farbe: #a26a25. Fonts: Montserrat + Cormorant Garamond italic.
+Vollständig responsive. Schön auf Mobile.
+NUR HTML. Direkt mit <!DOCTYPE html> starten.`;
+  } else {
+    return `Du bist ein Top-Copywriter für digitale Produkte im DACH-Raum.
+
+Erstelle eine vollständige, verkaufsstarke HTML-Salespage für dieses Hauptprodukt.
+
+PRODUKT:
+- Name: ${v('p-name')}
+- Preis: ${v('p-price')}€ netto ${v('p-oldprice') ? '(regulär: ' + v('p-oldprice') + ')' : ''}
+- Headline-Versprechen: ${v('p-headline')}
+- Zielgruppe: ${v('p-target')}
+- Problem vorher: ${v('p-problem')}
+- Transformation danach: ${v('p-transform')}
+- Module/Inhalte: ${v('p-content')}
+- Story & Credibility: ${v('p-story')}
+- Testimonial 1: ${v('p-t1') || 'keines'}
+- Testimonial 2: ${v('p-t2') || 'keines'}
+- Häufigste Einwände: ${v('p-objections')}
+- Garantie: ${v('p-guarantee') || 'keine'}
+
+PFLICHTSTRUKTUR (genau in dieser Reihenfolge):
+1. HEADLINE: "In [Zeitraum] [Ergebnis] — auch wenn du [Einwand]" + CTA-Button
+2. PROBLEM "Kennst du das?": Schmerz als Fließtext, emotional, KEINE Bullet-Liste
+3. MINDSHIFT: Alte Denkweise → neue Wahrheit
+4. TRANSFORMATION "Stell dir vor...": emotional, konkret + CTA-Button
+5. FÜR WEN: ✅ Für dich wenn... / ❌ Nicht für dich wenn...
+6. WAS IST DRIN: Alle Module mit ✓ Häkchen und Wert
+7. ÜBER MICH: kurze persönliche Story, Credibility
+8. TESTIMONIALS: Vorher/Nachher mit konkretem Ergebnis
+9. PREIS: Wert vs. Preis, Streichpreis, Garantie + CTA
+10. FAQ: 3–4 Einwände behandeln, verständnisvoll
+11. FINALER CTA
+
+Sprache: Deutsch, Du-Form, kurze Sätze, empowernd ohne Druck.
+Verboten: hustlen, Buzzwords, leere Phrasen.
+Button-Farbe: #a26a25. Fonts: Montserrat + Cormorant Garamond italic.
+Vollständig responsive. CTA-Buttons aktiv formuliert.
+NUR HTML. Direkt mit <!DOCTYPE html> starten.`;
   }
+}
 
+async function generate() {
   const btn = document.getElementById('btn');
   const result = document.getElementById('result');
   const inner = document.getElementById('result-inner');
 
+  if (currentType === 'mini') {
+    if (!v('m-name') || !v('m-price') || !v('m-pitch') || !v('m-target') || !v('m-content')) {
+      alert('Bitte fülle alle Pflichtfelder aus.'); return;
+    }
+  } else {
+    if (!v('p-name') || !v('p-price') || !v('p-headline') || !v('p-target') || !v('p-content')) {
+      alert('Bitte fülle alle Pflichtfelder aus.'); return;
+    }
+  }
+
   btn.disabled = true;
   btn.textContent = 'Wird erstellt...';
   result.style.display = 'block';
-  inner.innerHTML = `
-    <div class="loading-box">
-      <div class="spinner"></div>
-      <p class="loading-text">Salespage wird geschrieben – ca. 20 Sekunden...</p>
-    </div>`;
-
-  const prompt = `Du bist ein Top-Copywriter für digitale Miniprodukte im DACH-Raum.
-
-Erstelle eine vollständige, verkaufsstarke HTML-Salespage für dieses Produkt:
-
-- Name: ${name}
-- Preis: ${price}€ netto
-- Zielgruppe: ${target}
-- Das eine Ergebnis danach: ${outcome}
-- Das größte Problem vorher: ${problem}
-- Was ist drin: ${content}
-
-STRUKTUR (genau in dieser Reihenfolge):
-1. Hero: Starker Hook-Satz + Versprechen + CTA-Button
-2. Trust-Banner: 1-2 kurze Social-Proof-Zahlen (erfinde plausible, falls keine angegeben)
-3. Pain-Section "Kennst du das?": Das Problem als emotionaler Fließtext – kein Bullet-List
-4. Mindshift: Alte Denkweise → neue Wahrheit (z.B. "Du brauchst keine 10k Follower")
-5. Wunschzustand "Stell dir vor...": Emotional, konkret, lebendig
-6. Produkt-Reveal: Name + Inhalte mit ✓ Häkchen
-7. Preis-Sektion: Preis, CTA-Button
-8. FAQ: 3 kurze Einwände + Antworten
-9. Finaler CTA
-
-REGELN:
-- Sprache: Deutsch, Du-Form, kurze Sätze
-- Tonalität: empowernd, klar, motivierend – kein Druck
-- Button-Farbe: #a26a25
-- Fonts: Google Fonts Montserrat + Cormorant Garamond italic für Headlines
-- Vollständig responsive
-- Ein 12-Jähriger muss verstehen was verkauft wird und was sich danach ändert
-- Verboten: hustlen, Buzzwords, leere Phrasen
-
-Gib NUR das HTML zurück. Kein Markdown. Kein Text davor oder danach.
-Starte direkt mit <!DOCTYPE html>`;
+  inner.innerHTML = `<div class="loading-box"><div class="spinner"></div><p class="loading-text">Salespage wird geschrieben – ca. 20–30 Sekunden...</p></div>`;
 
   try {
     const res = await fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
+      body: JSON.stringify({ prompt: buildPrompt() })
     });
-
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'API-Fehler ' + res.status);
-    }
-
+    if (!res.ok) { const e = await res.json(); throw new Error(e.error || 'Fehler ' + res.status); }
     const json = await res.json();
     lastHTML = json.html;
-
     inner.innerHTML = `
       <div class="success-badge">✓ Salespage fertig!</div>
-      <p class="result-note">Kopiere das HTML oder lade die Datei herunter – direkt in Elopage, ThriveCart oder Kajabi einbauen.</p>
+      <p class="result-note">HTML kopieren und direkt in Elopage, ThriveCart oder Kajabi einbauen.</p>
       <div class="result-actions">
         <button class="btn-copy" onclick="copyHTML()">HTML kopieren</button>
         <button class="btn-dl" onclick="downloadHTML()">Datei herunterladen</button>
-        <button class="btn-reset" onclick="reset()">Neu erstellen</button>
+        <button class="btn-reset" onclick="resetForm()">Neu erstellen</button>
       </div>
-      <div class="result-preview">${escapeHTML(lastHTML.substring(0, 2000))}${lastHTML.length > 2000 ? '\n\n... +' + Math.round((lastHTML.length - 2000)/1000) + 'k Zeichen – lade die Datei für vollständigen Code' : ''}</div>
-    `;
-
+      <div class="result-preview">${esc(lastHTML.substring(0,2000))}${lastHTML.length>2000?'\n\n...+'+Math.round((lastHTML.length-2000)/1000)+'k – Datei herunterladen':''}</div>`;
   } catch (err) {
     inner.innerHTML = `<div class="error-box">Fehler: ${err.message}</div>`;
   } finally {
@@ -409,15 +297,11 @@ Starte direkt mit <!DOCTYPE html>`;
   }
 }
 
-function escapeHTML(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
 function copyHTML() {
   if (!lastHTML) return;
-  navigator.clipboard.writeText(lastHTML)
-    .then(() => alert('✓ HTML kopiert!'))
-    .catch(() => alert('Bitte manuell aus der Vorschau kopieren.'));
+  navigator.clipboard.writeText(lastHTML).then(() => alert('✓ HTML kopiert!')).catch(() => alert('Manuell kopieren.'));
 }
 
 function downloadHTML() {
@@ -426,20 +310,16 @@ function downloadHTML() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  const name = (document.getElementById('name')?.value || 'salespage')
-    .toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+  const name = (currentType==='mini'?v('m-name'):v('p-name')||'salespage').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
   a.download = `salespage-${name}.html`;
   a.click();
   URL.revokeObjectURL(url);
 }
 
-function reset() {
+function resetForm() {
   lastHTML = '';
   document.getElementById('result').style.display = 'none';
-  document.getElementById('result-inner').innerHTML = '';
-  ['name','price','target','outcome','problem','content'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
+  document.querySelectorAll('input, textarea').forEach(el => el.value = '');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
