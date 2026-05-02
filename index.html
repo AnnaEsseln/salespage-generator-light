@@ -7,311 +7,132 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #ebe9e2;
-      --gold: #a26a25;
-      --gold-hover: #8d5a1e;
-      --gold-light: #fdf8f2;
-      --gold-pale: #f5ede0;
-      --white: #ffffff;
-      --text: #1e1d1a;
-      --mid: #5c5954;
-      --soft: #9a9189;
-      --border: #dbd5cc;
-      --input-bg: #f7f5f1;
-      --card-shadow: 0 4px 32px rgba(0,0,0,0.08);
+      --bg: #ebe9e2; --gold: #a26a25; --gold-h: #8d5a1e; --gold-light: #fdf8f2;
+      --gold-pale: #f5ede0; --white: #fff; --text: #1e1d1a; --mid: #5c5954;
+      --soft: #9a9189; --border: #dbd5cc; --ibg: #f7f5f1;
+      --shadow: 0 4px 32px rgba(0,0,0,0.08);
     }
-
-    body {
-      background: var(--bg);
-      font-family: 'Montserrat', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      padding: 56px 20px 100px;
-    }
-
-    /* ── WRAPPER ── */
+    body { background: var(--bg); font-family: 'Montserrat', sans-serif; color: var(--text); min-height: 100vh; padding: 56px 20px 100px; }
     .wrap { max-width: 660px; margin: 0 auto; }
 
-    /* ── HEADER ── */
+    /* HEADER */
     .hdr { text-align: center; margin-bottom: 48px; }
-    .logo-line {
-      display: flex; align-items: center; justify-content: center;
-      gap: 16px; margin-bottom: 36px;
-    }
+    .logo-line { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 32px; }
     .logo-bar { width: 40px; height: 1px; background: var(--gold); }
-    .logo-diamond {
-      width: 6px; height: 6px; background: var(--gold);
-      transform: rotate(45deg);
-    }
-
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(44px, 8vw, 68px);
-      font-weight: 300;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
+    .logo-dia { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px,8vw,68px); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 16px; }
     h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+    .subl { font-size: 10px; letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
+    .intro { font-size: 14px; line-height: 1.8; color: var(--mid); max-width: 380px; margin: 0 auto; }
 
-    .subl {
-      font-size: 10px; letter-spacing: 0.22em;
-      color: var(--gold); text-transform: uppercase;
-      font-weight: 600; margin-bottom: 14px;
-    }
-    .intro {
-      font-size: 14px; line-height: 1.8;
-      color: var(--mid); max-width: 380px; margin: 0 auto;
-    }
-
-    /* ── CARD ── */
-    .card {
-      background: var(--white);
-      border-radius: 24px;
-      box-shadow: var(--card-shadow);
-      overflow: hidden;
-    }
-
-    /* CARD HEADER BAR */
-    .card-top {
-      background: linear-gradient(135deg, #2c2b28 0%, #1a1917 100%);
-      padding: 24px 36px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .card-top-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gold); opacity: 0.7;
-    }
-    .card-top h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px; font-weight: 400;
-      color: rgba(255,255,255,0.9); letter-spacing: 0.02em;
-    }
-    .card-top span {
-      margin-left: auto; font-size: 10px;
-      letter-spacing: 0.14em; color: var(--gold);
-      text-transform: uppercase; font-weight: 600;
-    }
-
+    /* CARD */
+    .card { background: var(--white); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; }
+    .card-top { background: linear-gradient(135deg, #2c2b28 0%, #1a1917 100%); padding: 24px 36px; display: flex; align-items: center; gap: 10px; }
+    .ct-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+    .card-top h2 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.9); margin-left: 4px; }
+    .card-top span { margin-left: auto; font-size: 10px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; font-weight: 600; }
     .card-body { padding: 36px; }
 
-    /* ── SECTION HEADER ── */
-    .sec {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 20px; margin-top: 32px;
-    }
+    /* SECTION */
+    .sec { display: flex; align-items: center; gap: 10px; margin: 28px 0 18px; }
     .sec:first-child { margin-top: 0; }
-    .sec-num {
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--gold-pale); border: 1px solid var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700; color: var(--gold); flex-shrink: 0;
-    }
-    .sec-title {
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--mid);
-    }
-    .sec-line { flex: 1; height: 1px; background: var(--border); }
+    .sec-n { width: 24px; height: 24px; border-radius: 50%; background: var(--gold-pale); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+    .sec-t { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+    .sec-l { flex: 1; height: 1px; background: var(--border); }
 
-    /* ── FIELDS ── */
+    /* FIELDS */
     .f { margin-bottom: 14px; }
     .r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    label {
-      display: block; font-size: 10px; font-weight: 700;
-      letter-spacing: 0.1em; color: var(--soft);
-      text-transform: uppercase; margin-bottom: 7px;
-    }
-    .lh {
-      font-size: 10px; letter-spacing: 0; font-weight: 400;
-      color: #c0b8ae; text-transform: none;
-    }
-
+    label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: var(--soft); text-transform: uppercase; margin-bottom: 7px; }
+    .lh { font-size: 10px; letter-spacing: 0; font-weight: 400; color: #c0b8ae; text-transform: none; }
     input[type=text], input[type=number], textarea {
-      width: 100%; background: var(--input-bg);
-      border: 1.5px solid var(--border); border-radius: 10px;
-      padding: 11px 14px; font-family: 'Montserrat', sans-serif;
-      font-size: 13px; color: var(--text); outline: none;
-      transition: border-color 0.15s, box-shadow 0.15s; resize: vertical;
-      appearance: none;
+      width: 100%; background: var(--ibg); border: 1.5px solid var(--border); border-radius: 10px;
+      padding: 11px 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--text);
+      outline: none; transition: border-color 0.15s, box-shadow 0.15s; resize: vertical;
     }
-    input:focus, textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(162,106,37,0.1);
-    }
-    textarea { min-height: 80px; line-height: 1.65; }
+    input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(162,106,37,0.1); }
+    textarea { min-height: 78px; line-height: 1.65; }
 
-    /* ── HINT ── */
-    .hint {
-      display: flex; gap: 8px; align-items: flex-start;
-      background: var(--gold-light); border: 1px solid #e8d8c0;
-      border-radius: 8px; padding: 10px 14px;
-      font-size: 12px; color: var(--mid); line-height: 1.55;
-      margin-bottom: 12px;
-    }
-    .hint-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    /* HINT */
+    .hint { display: flex; gap: 8px; align-items: flex-start; background: var(--gold-light); border: 1px solid #e8d8c0; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--mid); line-height: 1.55; margin-bottom: 12px; }
+    .hi { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 
-    /* ── IMAGE UPLOAD ── */
-    .img-wrap { position: relative; }
-    .img-drop {
-      border: 1.5px dashed var(--border); border-radius: 10px;
-      background: var(--input-bg); cursor: pointer;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 6px; transition: all 0.15s;
-      min-height: 88px; padding: 16px; position: relative;
+    /* IMG UPLOAD */
+    .iw { position: relative; }
+    .idrop {
+      border: 1.5px dashed var(--border); border-radius: 10px; background: var(--ibg);
+      cursor: pointer; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 6px; transition: all 0.15s; min-height: 88px;
+      padding: 16px; position: relative; overflow: hidden;
     }
-    .img-drop:hover { border-color: var(--gold); background: var(--gold-light); }
-    .img-drop.filled { padding: 0; min-height: 130px; border-style: solid; border-color: var(--gold); }
-    .img-drop.filled img { width: 100%; height: 130px; object-fit: cover; border-radius: 9px; display: block; }
-    .img-drop.avatar { min-height: 72px; }
-    .img-drop.avatar.filled img { width: 64px; height: 64px; border-radius: 50%; }
-    .img-drop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-    .upload-ico { font-size: 20px; opacity: 0.35; }
-    .upload-txt { font-size: 11px; color: var(--soft); text-align: center; }
-    .upload-sub { font-size: 10px; color: #c0b8ae; }
-    .img-remove {
-      position: absolute; top: 6px; right: 6px;
-      background: rgba(0,0,0,0.55); color: #fff; border: none;
-      border-radius: 50%; width: 22px; height: 22px;
-      font-size: 10px; cursor: pointer; display: none;
-      align-items: center; justify-content: center; z-index: 3;
-    }
-    .img-wrap:hover .img-remove.visible { display: flex; }
+    .idrop:hover { border-color: var(--gold); background: var(--gold-light); }
+    .idrop.filled { padding: 0; min-height: 130px; border-style: solid; border-color: var(--gold); }
+    .idrop.filled img { width: 100%; height: 130px; object-fit: cover; border-radius: 9px; display: block; }
+    .idrop.av { min-height: 72px; }
+    .idrop.av.filled img { width: 64px; height: 64px; border-radius: 50%; display: block; margin: auto; }
+    .idrop input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .uico { font-size: 20px; opacity: 0.35; }
+    .utxt { font-size: 11px; color: var(--soft); text-align: center; }
+    .usub { font-size: 10px; color: #c0b8ae; }
+    .irm { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.55); color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px; font-size: 10px; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 3; }
+    .iw:hover .irm.on { display: flex; }
 
-    /* ── TESTIMONIAL BLOCK ── */
-    .testi {
-      background: var(--input-bg); border: 1.5px solid var(--border);
-      border-radius: 14px; padding: 20px; margin-bottom: 12px;
-    }
-    .testi-head {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 14px;
-    }
-    .testi-num {
-      font-size: 10px; font-weight: 700; color: var(--gold);
-      letter-spacing: 0.1em; text-transform: uppercase;
-    }
-    .testi-line { flex: 1; height: 1px; background: var(--border); }
+    /* TESTI */
+    .testi { background: var(--ibg); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 12px; }
+    .testi-h { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .testi-n { font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+    .testi-l { flex: 1; height: 1px; background: var(--border); }
 
-    /* ── VALIDATION ── */
-    .val {
-      background: var(--input-bg); border: 1.5px solid var(--border);
-      border-radius: 14px; padding: 20px; margin-top: 24px;
-    }
-    .val-title {
-      font-size: 11px; font-weight: 700; color: var(--text);
-      letter-spacing: 0.08em; text-transform: uppercase;
-      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
-    }
+    /* VALIDATION */
+    .val { background: var(--ibg); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px; margin-top: 24px; }
+    .val-title { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
     .val-title::before { content: ''; display: block; width: 3px; height: 14px; background: var(--gold); border-radius: 2px; }
-    .val-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px; }
-    .vdot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--border); flex-shrink: 0; margin-top: 3px;
-      transition: background 0.25s;
-    }
-    .vdot.ok { background: #52b788; }
-    .vdot.warn { background: #e07a3a; }
-    .vtxt { font-size: 12px; color: var(--mid); line-height: 1.5; }
+    .vr { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px; }
+    .vd { width: 8px; height: 8px; border-radius: 50%; background: var(--border); flex-shrink: 0; margin-top: 3px; transition: background 0.25s; }
+    .vd.ok { background: #52b788; }
+    .vd.warn { background: #e07a3a; }
+    .vt { font-size: 12px; color: var(--mid); line-height: 1.5; }
 
-    /* ── GOLDEN ── */
-    .golden {
-      background: linear-gradient(135deg, #fdf8f2 0%, #faf3e8 100%);
-      border: 1.5px solid var(--gold); border-radius: 14px;
-      padding: 20px; margin-top: 16px; display: none;
-    }
-    .golden p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px; font-style: italic; color: var(--text);
-      line-height: 1.5; margin-bottom: 14px; font-weight: 400;
-    }
-    .golden-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-gy { background: var(--gold); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
-    .btn-gy:hover { background: var(--gold-hover); }
-    .btn-gn { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); border-radius: 8px; padding: 10px 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; cursor: pointer; transition: background 0.15s; }
-    .btn-gn:hover { background: var(--gold-pale); }
+    /* GOLDEN */
+    .golden { background: linear-gradient(135deg,#fdf8f2,#faf3e8); border: 1.5px solid var(--gold); border-radius: 14px; padding: 20px; margin-top: 16px; display: none; }
+    .golden p { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: var(--text); line-height: 1.5; margin-bottom: 14px; }
+    .gb { display: flex; gap: 10px; flex-wrap: wrap; }
+    .bgy { background: var(--gold); color: #fff; border: none; border-radius: 8px; padding: 10px 20px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .bgy:hover { background: var(--gold-h); }
+    .bgn { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); border-radius: 8px; padding: 10px 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; cursor: pointer; }
 
-    /* ── GENERATE ── */
+    /* GEN BTN */
     .gen-wrap { padding: 0 36px 36px; }
     .btn-gen {
-      width: 100%;
-      background: linear-gradient(135deg, #a26a25 0%, #8d5a1e 100%);
-      color: #fff; border: none; border-radius: 14px;
-      padding: 18px; font-family: 'Montserrat', sans-serif;
-      font-size: 15px; font-weight: 700; cursor: pointer;
-      letter-spacing: 0.05em; transition: opacity 0.15s, transform 0.1s;
-      box-shadow: 0 4px 16px rgba(162,106,37,0.3);
+      width: 100%; background: linear-gradient(135deg,#a26a25,#8d5a1e); color: #fff;
+      border: none; border-radius: 14px; padding: 18px; font-family: 'Montserrat', sans-serif;
+      font-size: 15px; font-weight: 700; cursor: pointer; letter-spacing: 0.05em;
+      transition: opacity 0.15s, transform 0.1s; box-shadow: 0 4px 16px rgba(162,106,37,0.3);
     }
     .btn-gen:hover { opacity: 0.92; }
     .btn-gen:active { transform: scale(0.99); }
     .btn-gen:disabled { background: var(--border); box-shadow: none; cursor: not-allowed; color: var(--soft); }
 
-    /* ── RESULT ── */
+    /* RESULT */
     .result { display: none; padding: 0 36px 36px; }
-    .ok-badge {
-      display: flex; align-items: center; gap: 10px;
-      background: #edf7ed; border: 1px solid #a8d5a8;
-      border-radius: 10px; padding: 12px 16px;
-      font-size: 13px; color: #2d6a2d; font-weight: 600; margin-bottom: 14px;
-    }
-    .ok-ico { font-size: 16px; }
+    .ok-badge { display: flex; align-items: center; gap: 10px; background: #edf7ed; border: 1px solid #a8d5a8; border-radius: 10px; padding: 12px 16px; font-size: 13px; color: #2d6a2d; font-weight: 600; margin-bottom: 14px; }
     .res-note { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 14px; }
     .res-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
-    .btn-copy {
-      background: var(--gold); color: #fff; border: none;
-      border-radius: 10px; padding: 11px 22px;
-      font-family: 'Montserrat', sans-serif; font-size: 13px;
-      font-weight: 600; cursor: pointer; transition: background 0.15s;
-    }
-    .btn-copy:hover { background: var(--gold-hover); }
-    .btn-dl {
-      background: transparent; color: var(--gold);
-      border: 1.5px solid var(--gold); border-radius: 10px;
-      padding: 11px 22px; font-family: 'Montserrat', sans-serif;
-      font-size: 13px; cursor: pointer; transition: background 0.15s;
-    }
-    .btn-dl:hover { background: var(--gold-pale); }
-    .btn-rst {
-      background: transparent; color: var(--soft);
-      border: 1.5px solid var(--border); border-radius: 10px;
-      padding: 11px 18px; font-family: 'Montserrat', sans-serif;
-      font-size: 13px; cursor: pointer;
-    }
-    .res-pre {
-      background: #1e1d1a; border-radius: 12px;
-      padding: 16px; font-size: 11px; color: #a0998e;
-      font-family: 'Courier New', monospace; max-height: 200px;
-      overflow-y: auto; white-space: pre-wrap; word-break: break-word;
-      line-height: 1.7;
-    }
-
-    /* ── LOADING ── */
+    .bcopy { background: var(--gold); color: #fff; border: none; border-radius: 10px; padding: 11px 22px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .bcopy:hover { background: var(--gold-h); }
+    .bdl { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); border-radius: 10px; padding: 11px 22px; font-family: 'Montserrat', sans-serif; font-size: 13px; cursor: pointer; }
+    .bdl:hover { background: var(--gold-pale); }
+    .brst { background: transparent; color: var(--soft); border: 1.5px solid var(--border); border-radius: 10px; padding: 11px 18px; font-family: 'Montserrat', sans-serif; font-size: 13px; cursor: pointer; }
+    .res-pre { background: #1e1d1a; border-radius: 12px; padding: 16px; font-size: 11px; color: #a0998e; font-family: monospace; max-height: 200px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; line-height: 1.7; }
     .ldbox { text-align: center; padding: 48px 0; }
-    .spin {
-      width: 36px; height: 36px; margin: 0 auto 16px;
-      border: 2px solid var(--border);
-      border-top-color: var(--gold);
-      border-radius: 50%; animation: sp 0.9s linear infinite;
-    }
+    .spin { width: 36px; height: 36px; margin: 0 auto 16px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: sp 0.9s linear infinite; }
     @keyframes sp { to { transform: rotate(360deg); } }
     .ldtxt { font-size: 13px; color: var(--soft); }
-    .ldstep { font-size: 11px; color: #c0b8ae; margin-top: 6px; }
+    .ldsub { font-size: 11px; color: #c0b8ae; margin-top: 6px; }
+    .errbox { background: #fff5f5; border: 1px solid #f0c0c0; border-radius: 10px; padding: 14px 16px; font-size: 13px; color: #c0392b; }
 
-    .errbox {
-      background: #fff5f5; border: 1px solid #f0c0c0;
-      border-radius: 10px; padding: 14px 16px;
-      font-size: 13px; color: #c0392b;
-    }
-
-    /* ── DIVIDER ── */
-    .div { height: 1px; background: var(--bg); margin: 8px 0 24px; }
-
-    @media(max-width: 560px) {
+    @media(max-width:560px) {
       body { padding: 32px 12px 80px; }
       .card-body, .gen-wrap, .result { padding-left: 20px; padding-right: 20px; }
       .card-top { padding: 18px 20px; }
@@ -322,419 +143,422 @@
 <body>
 <div class="wrap">
 
-  <!-- HEADER -->
   <div class="hdr">
     <div class="logo-line">
-      <div class="logo-bar"></div>
-      <div class="logo-diamond"></div>
-      <div class="logo-bar"></div>
+      <div class="logo-bar"></div><div class="logo-dia"></div><div class="logo-bar"></div>
     </div>
-    <p class="subl">Miniprodukt · Checkout · Digital</p>
+    <p class="subl">Salespage · Minikurs · Digital</p>
     <h1>Dein <em>Salespage</em><br>Generator</h1>
-    <p class="intro">6 Felder. Fertige Salespage.<br>Direkt einsatzbereit für Elopage, ThriveCart & Kajabi.</p>
+    <p class="intro">Fülle die Felder aus – fertig.<br>Das Tool schreibt deine komplette Salespage.</p>
   </div>
 
-  <!-- CARD -->
   <div class="card">
-
     <div class="card-top">
-      <div class="card-top-dot"></div>
-      <div class="card-top-dot" style="opacity:0.4"></div>
-      <div class="card-top-dot" style="opacity:0.2"></div>
+      <div class="ct-dot"></div>
+      <div class="ct-dot" style="opacity:.4"></div>
+      <div class="ct-dot" style="opacity:.2"></div>
       <h2>Dein Miniprodukt</h2>
-      <span>Impulskauf · bis 97€</span>
+      <span>11-Block Blueprint</span>
     </div>
 
     <div class="card-body">
 
-      <!-- 1. BASICS -->
-      <div class="sec">
-        <div class="sec-num">1</div>
-        <span class="sec-title">Basis</span>
-        <div class="sec-line"></div>
+      <!-- 1. BASIS -->
+      <div class="sec"><div class="sec-n">1</div><span class="sec-t">Basis</span><div class="sec-l"></div></div>
+      <div class="r2">
+        <div class="f"><label>Produktname</label><input type="text" id="mn" placeholder="z.B. Buchungs-Booster"></div>
+        <div class="f"><label>Preis <span class="lh">(netto €)</span></label><input type="number" id="mp" placeholder="27"></div>
+      </div>
+      <div class="f"><label>Zielgruppe <span class="lh">(so spezifisch wie möglich)</span></label><input type="text" id="mtg" placeholder="z.B. Fotografinnen die über Instagram buchen wollen"></div>
+      <div class="f">
+        <label>Kurs-Cover <span class="lh">(optional – erscheint unter der Headline)</span></label>
+        <div class="iw">
+          <div class="idrop" id="cv-d">
+            <input type="file" id="cv-i" accept="image/*" onchange="loadImg(this,'cv-d','cv-b','cv-r')">
+            <span class="uico">🖼</span><span class="utxt">Klicken oder Bild ablegen</span><span class="usub">JPG, PNG · max. 2 MB</span>
+          </div>
+          <button class="irm" id="cv-r" onclick="rmImg('cv-d','cv-i','cv-b','cv-r')">✕</button>
+        </div>
+        <input type="hidden" id="cv-b">
       </div>
 
+      <!-- 2. HEADLINE & PROBLEM -->
+      <div class="sec"><div class="sec-n">2</div><span class="sec-t">Headline & Problem</span><div class="sec-l"></div></div>
+      <div class="hint"><span class="hi">🎯</span><span>Konkret + Zeitraum + Einwand entkräften:<br>✅ <em>"In 30 Tagen dein erstes digitales Produkt verkaufen — auch wenn du bei null anfängst"</em></span></div>
+      <div class="f"><label>Headline-Versprechen</label><textarea id="mhl" rows="2" placeholder="z.B. In 30 Tagen dein erstes digitales Produkt erstellen und verkaufen — auch wenn du noch nie etwas online verkauft hast"></textarea></div>
+      <div class="f"><label>Ausgangssituation / Problem <span class="lh">(wie fühlt sich die Person gerade?)</span></label><textarea id="mprob" placeholder="z.B. Du weißt dass du Wissen hast das anderen helfen könnte. Aber irgendwie kommt das Produkt einfach nicht auf die Welt. Du hast schon angefangen, aufgehört, neu angefangen..."></textarea></div>
+      <div class="f"><label>Was sie schon versucht hat <span class="lh">(und warum es nicht geklappt hat)</span></label><textarea id="mtried" placeholder="z.B. Du hast schon YouTube-Videos geguckt, Kurse angefangen — aber irgendwas kommt immer dazwischen oder du weißt nicht genau wo du starten sollst"></textarea></div>
+
+      <!-- 3. TRANSFORMATION -->
+      <div class="sec"><div class="sec-n">3</div><span class="sec-t">Transformation</span><div class="sec-l"></div></div>
+      <div class="hint"><span class="hi">✨</span><span>Nicht das Produkt — die Veränderung verkaufen.<br>Von Punkt A → Punkt B. Konkret, nicht vage.</span></div>
+      <div class="f"><label>Das Leben danach <span class="lh">("Stell dir vor...")</span></label><textarea id="mtrans" placeholder="z.B. Stell dir vor: Du öffnest morgens dein Handy und siehst eine Kaufbenachrichtigung — für ein Produkt das du einmal erstellt hast und das jetzt schlafend verkauft. Kein Tausch von Zeit gegen Geld."></textarea></div>
+
+      <!-- 4. INHALT -->
+      <div class="sec"><div class="sec-n">4</div><span class="sec-t">Inhalte & Format</span><div class="sec-l"></div></div>
+      <div class="hint"><span class="hi">📦</span><span>Konkret! Menschen kaufen nicht weil sie nicht wissen was sie bekommen.<br>✅ <em>"4 Videos à 10 Min. – direkt umsetzbar"</em> · ❌ <em>"wertvolle Inhalte"</em></span></div>
+      <div class="f"><label>Module / Was ist drin?</label><textarea id="mcon" rows="6" placeholder="z.B.&#10;Modul 1: Deine Produktidee — 3 Methoden um die Idee zu finden für die deine Zielgruppe sofort zahlt&#10;Modul 2: Struktur & Aufbau — Schritt-für-Schritt wie dein Produkt aufgebaut ist in unter 2 Stunden&#10;Modul 3: Technik ohne Stress — welche Tools du wirklich brauchst&#10;Modul 4: Verkaufen ab Tag 1 — deine erste Salespage, dein erster Checkout, dein erster Verkauf&#10;Bonus: 50 fertige Prompts (Wert 29€)"></textarea></div>
+      <div class="r2">
+        <div class="f"><label>Format</label><input type="text" id="mfmt" placeholder="z.B. 4 Videos + Workbook + Vorlagen"></div>
+        <div class="f"><label>Häufigster Einwand</label><input type="text" id="mobj" placeholder="z.B. Ich hab keine Zeit"></div>
+      </div>
+
+      <!-- 5. FÜR WEN -->
+      <div class="sec"><div class="sec-n">5</div><span class="sec-t">Für wen?</span><div class="sec-l"></div></div>
+      <div class="r2">
+        <div class="f"><label>✅ Für wen ist es? <span class="lh">(3 Punkte)</span></label><textarea id="mfw" placeholder="z.B.&#10;Du willst endlich ein digitales Produkt das wirklich gekauft wird&#10;Du weißt dass du Wissen hast — aber nicht wie du es verpackst&#10;Du willst ein Business das nicht 100% von deiner Zeit abhängt"></textarea></div>
+        <div class="f"><label>❌ Für wen nicht? <span class="lh">(2 Punkte)</span></label><textarea id="mfwn" placeholder="z.B.&#10;Du suchst eine magische Abkürzung ohne Arbeit&#10;Du hast noch keine Idee womit du anderen helfen kannst"></textarea></div>
+      </div>
+
+      <!-- 6. ÜBER DICH -->
+      <div class="sec"><div class="sec-n">6</div><span class="sec-t">Über dich</span><div class="sec-l"></div></div>
+      <div class="hint"><span class="hi">👩</span><span>Nicht der Lebenslauf — deine Story. Ausgangssituation → Veränderung → konkretes Ergebnis.</span></div>
       <div class="r2">
         <div class="f">
-          <label>Produktname</label>
-          <input type="text" id="mn" placeholder="z.B. Buchungs-Booster">
-        </div>
-        <div class="f">
-          <label>Preis <span class="lh">(netto €)</span></label>
-          <input type="number" id="mp" placeholder="27">
-        </div>
-      </div>
-
-      <div class="f">
-        <label>Zielgruppe</label>
-        <input type="text" id="mtg" placeholder="z.B. Fotografinnen die über Instagram buchen wollen">
-      </div>
-
-      <!-- COVER -->
-      <div class="f">
-        <label>Kurs-Cover <span class="lh">(optional – erscheint oben auf der Salespage)</span></label>
-        <div class="img-wrap">
-          <div class="img-drop" id="cv-drop">
-            <input type="file" id="cv-inp" accept="image/*" onchange="loadImg(this,'cv-drop','cv-b64')">
-            <span class="upload-ico">🖼</span>
-            <span class="upload-txt">Hier klicken oder Bild ablegen</span>
-            <span class="upload-sub">JPG, PNG · empfohlen 800×500px · max. 2MB</span>
+          <label>Dein Foto <span class="lh">(optional)</span></label>
+          <div class="iw">
+            <div class="idrop av" id="me-d">
+              <input type="file" id="me-i" accept="image/*" onchange="loadImg(this,'me-d','me-b','me-r',true)">
+              <span class="uico" style="font-size:18px">👤</span><span class="utxt" style="font-size:10px">Foto hochladen</span>
+            </div>
+            <button class="irm" id="me-r" onclick="rmImg('me-d','me-i','me-b','me-r',true)">✕</button>
           </div>
-          <button class="img-remove" id="cv-rm" onclick="removeImg('cv-drop','cv-inp','cv-b64','cv-rm')">✕</button>
+          <input type="hidden" id="me-b">
         </div>
-        <input type="hidden" id="cv-b64">
+        <div class="f"><label>Deine Story & Credibility</label><textarea id="mstory" placeholder="z.B. Ich bin [Name]. 2022 hab ich meinen ersten Kurs für 97€ verkauft — mit 400 Followern und null Ahnung ob das jemand kauft. Heute sind es 200+ Kundinnen. Nicht weil ich besonders talentiert bin. Sondern weil ich einen Weg gefunden hab der funktioniert."></textarea></div>
       </div>
 
-      <!-- 2. PITCH -->
-      <div class="sec" style="margin-top:28px">
-        <div class="sec-num">2</div>
-        <span class="sec-title">Der Pitch-Satz</span>
-        <div class="sec-line"></div>
+      <!-- 7. TESTIMONIALS -->
+      <div class="sec"><div class="sec-n">7</div><span class="sec-t">Social Proof</span><div class="sec-l"></div></div>
+      <div class="hint"><span class="hi">💬</span><span>Kein <em>"Toller Kurs!"</em> — zeig <strong>Vorher-Situation + konkretes Ergebnis</strong> mit Zahl oder Zeitraum.</span></div>
+
+      <div class="testi">
+        <div class="testi-h"><span class="testi-n">Testimonial 1</span><div class="testi-l"></div></div>
+        <div class="r2">
+          <div class="f">
+            <label>Foto <span class="lh">(optional)</span></label>
+            <div class="iw">
+              <div class="idrop av" id="t1-d">
+                <input type="file" id="t1-i" accept="image/*" onchange="loadImg(this,'t1-d','t1-b','t1-r',true)">
+                <span class="uico" style="font-size:18px">👤</span><span class="utxt" style="font-size:10px">Foto</span>
+              </div>
+              <button class="irm" id="t1-r" onclick="rmImg('t1-d','t1-i','t1-b','t1-r',true)">✕</button>
+            </div>
+            <input type="hidden" id="t1-b">
+          </div>
+          <div class="f"><label>Name & Beschreibung</label><input type="text" id="t1n" placeholder="z.B. Sarah, Ernährungsberaterin Hamburg"></div>
+        </div>
+        <div class="f"><label>Zitat <span class="lh">(Vorher + konkretes Ergebnis)</span></label><textarea id="t1t" rows="3" placeholder="z.B. Ich hatte 2 Jahre lang die Idee für einen Kurs im Kopf. Nach diesem Programm war mein Produkt in 3 Wochen fertig — und hat in der ersten Woche 8 Mal verkauft."></textarea></div>
       </div>
 
-      <div class="hint">
-        <span class="hint-icon">💡</span>
-        <span>Zeig ein <strong>konkretes, messbares Ergebnis</strong> — nicht vage.<br>
-        ✅ <em>"Erstelle deinen eigenen Lightroom-Style in 2 Stunden"</em><br>
-        ❌ <em>"Lerne bessere Fotos zu machen"</em></span>
+      <div class="testi">
+        <div class="testi-h"><span class="testi-n">Testimonial 2</span><div class="testi-l"></div></div>
+        <div class="r2">
+          <div class="f">
+            <label>Foto <span class="lh">(optional)</span></label>
+            <div class="iw">
+              <div class="idrop av" id="t2-d">
+                <input type="file" id="t2-i" accept="image/*" onchange="loadImg(this,'t2-d','t2-b','t2-r',true)">
+                <span class="uico" style="font-size:18px">👤</span><span class="utxt" style="font-size:10px">Foto</span>
+              </div>
+              <button class="irm" id="t2-r" onclick="rmImg('t2-d','t2-i','t2-b','t2-r',true)">✕</button>
+            </div>
+            <input type="hidden" id="t2-b">
+          </div>
+          <div class="f"><label>Name & Beschreibung</label><input type="text" id="t2n" placeholder="z.B. Lisa, Fotografin München"></div>
+        </div>
+        <div class="f"><label>Zitat <span class="lh">(Vorher + konkretes Ergebnis)</span></label><textarea id="t2t" rows="3" placeholder="z.B. Ich hab vorher nie gewusst was ich posten soll. Nach diesem Kurs habe ich meinen Content für 2 Wochen an einem Nachmittag fertig gehabt."></textarea></div>
       </div>
 
-      <div class="f">
-        <label>Pitch-Satz <span class="lh">(das erste was jemand liest)</span></label>
-        <textarea id="mpit" rows="2" placeholder="z.B. Erstelle deinen eigenen konsistenten Feed-Look in Lightroom — und lass deine Fotos endlich so professionell wirken wie du fotografierst"></textarea>
+      <div class="testi">
+        <div class="testi-h"><span class="testi-n">Testimonial 3 <span class="lh" style="text-transform:none;letter-spacing:0">(optional)</span></span><div class="testi-l"></div></div>
+        <div class="r2">
+          <div class="f">
+            <label>Foto <span class="lh">(optional)</span></label>
+            <div class="iw">
+              <div class="idrop av" id="t3-d">
+                <input type="file" id="t3-i" accept="image/*" onchange="loadImg(this,'t3-d','t3-b','t3-r',true)">
+                <span class="uico" style="font-size:18px">👤</span><span class="utxt" style="font-size:10px">Foto</span>
+              </div>
+              <button class="irm" id="t3-r" onclick="rmImg('t3-d','t3-i','t3-b','t3-r',true)">✕</button>
+            </div>
+            <input type="hidden" id="t3-b">
+          </div>
+          <div class="f"><label>Name & Beschreibung</label><input type="text" id="t3n" placeholder="z.B. Mel, Coach Berlin"></div>
+        </div>
+        <div class="f"><label>Zitat</label><textarea id="t3t" rows="3" placeholder="z.B. Ich hab damit 18.000€ am Launch-Tag gemacht — das hätte ich mir vorher nie vorstellen können."></textarea></div>
       </div>
 
-      <!-- 3. INHALT -->
-      <div class="sec" style="margin-top:28px">
-        <div class="sec-num">3</div>
-        <span class="sec-title">Inhalt & Format</span>
-        <div class="sec-line"></div>
-      </div>
-
-      <div class="hint">
-        <span class="hint-icon">💡</span>
-        <span>Konkret, kein Blabla.<br>
-        ✅ <em>"4 Videos à 10 Min. – direkt umsetzbar"</em><br>
-        ❌ <em>"Wertvolle Inhalte"</em></span>
-      </div>
-
-      <div class="f">
-        <label>Was ist drin? <span class="lh">(3–5 Stichpunkte)</span></label>
-        <textarea id="mcon" rows="5" placeholder="z.B.&#10;4 Video-Lektionen (je 10 Min.) – direkt umsetzbar&#10;Schritt-für-Schritt Workbook&#10;Die 3 Fehler die 90% machen – und wie du sie vermeidest&#10;Dein kompletter Workflow in unter 5 Minuten pro Foto"></textarea>
-      </div>
-
+      <!-- 8. PREIS & EXTRAS -->
+      <div class="sec"><div class="sec-n">8</div><span class="sec-t">Preis & Extras</span><div class="sec-l"></div></div>
       <div class="r2">
-        <div class="f">
-          <label>Format</label>
-          <input type="text" id="mfmt" placeholder="z.B. Videos + PDF Workbook">
-        </div>
-        <div class="f">
-          <label>Häufigster Einwand</label>
-          <input type="text" id="mobj" placeholder="z.B. Ich bin Anfänger">
-        </div>
+        <div class="f"><label>Streichpreis <span class="lh">(optional)</span></label><input type="text" id="mold" placeholder="z.B. statt regulär 197€"></div>
+        <div class="f"><label>Garantie <span class="lh">(optional)</span></label><input type="text" id="mgar" placeholder="z.B. 14-Tage Geld-zurück"></div>
       </div>
-
-      <div class="f">
-        <label>Für wen ist es? <span class="lh">(1–2 Sätze)</span></label>
-        <textarea id="mfw" rows="3" placeholder="z.B. Dieser Kurs ist für dich wenn du tolle Fotos machst aber dein Feed trotzdem zusammengewürfelt wirkt — und du endlich einen Style willst der sofort wiedererkennbar ist, ohne stundenlang an jedem Bild rumzuschrauben."></textarea>
-      </div>
-
-      <!-- 4. TESTIMONIALS -->
-      <div class="sec" style="margin-top:28px">
-        <div class="sec-num">4</div>
-        <span class="sec-title">Testimonials <span class="lh" style="text-transform:none;letter-spacing:0">(optional)</span></span>
-        <div class="sec-line"></div>
-      </div>
-
-      <div class="hint">
-        <span class="hint-icon">💬</span>
-        <span>Kein <em>"Toller Kurs!"</em> — zeig <strong>Vorher + konkretes Ergebnis</strong> mit Zahl oder Zeitraum.</span>
-      </div>
-
-      <!-- Testimonial 1 -->
-      <div class="testi">
-        <div class="testi-head">
-          <span class="testi-num">Testimonial 1</span>
-          <div class="testi-line"></div>
-        </div>
-        <div class="r2">
-          <div class="f">
-            <label>Profilfoto <span class="lh">(optional)</span></label>
-            <div class="img-wrap">
-              <div class="img-drop avatar" id="t1-drop">
-                <input type="file" id="t1-inp" accept="image/*" onchange="loadImg(this,'t1-drop','t1-b64',true)">
-                <span class="upload-ico" style="font-size:18px">👤</span>
-                <span class="upload-txt" style="font-size:10px">Foto hochladen</span>
-              </div>
-              <button class="img-remove" id="t1-rm" onclick="removeImg('t1-drop','t1-inp','t1-b64','t1-rm',true)">✕</button>
-            </div>
-            <input type="hidden" id="t1-b64">
-          </div>
-          <div class="f">
-            <label>Name & Beschreibung</label>
-            <input type="text" id="t1n" placeholder="z.B. Lisa, 34, Fotografin aus München">
-          </div>
-        </div>
-        <div class="f">
-          <label>Zitat</label>
-          <textarea id="t1t" rows="3" placeholder="z.B. Ich hab jahrelang irgendwelche Presets runtergeladen und mich gefragt warum mein Feed nie zusammenpasst. Nach diesem Kurs hab ich meinen eigenen Style — mein letzter Post hatte dreimal so viele Saves."></textarea>
-        </div>
-      </div>
-
-      <!-- Testimonial 2 -->
-      <div class="testi">
-        <div class="testi-head">
-          <span class="testi-num">Testimonial 2</span>
-          <div class="testi-line"></div>
-        </div>
-        <div class="r2">
-          <div class="f">
-            <label>Profilfoto <span class="lh">(optional)</span></label>
-            <div class="img-wrap">
-              <div class="img-drop avatar" id="t2-drop">
-                <input type="file" id="t2-inp" accept="image/*" onchange="loadImg(this,'t2-drop','t2-b64',true)">
-                <span class="upload-ico" style="font-size:18px">👤</span>
-                <span class="upload-txt" style="font-size:10px">Foto hochladen</span>
-              </div>
-              <button class="img-remove" id="t2-rm" onclick="removeImg('t2-drop','t2-inp','t2-b64','t2-rm',true)">✕</button>
-            </div>
-            <input type="hidden" id="t2-b64">
-          </div>
-          <div class="f">
-            <label>Name & Beschreibung</label>
-            <input type="text" id="t2n" placeholder="z.B. Sarah, Coach aus Berlin">
-          </div>
-        </div>
-        <div class="f">
-          <label>Zitat</label>
-          <textarea id="t2t" rows="3" placeholder="z.B. Vorher hab ich nie gewusst was ich posten soll. Nach diesem Kurs hab ich meinen Content für 2 Wochen an einem Nachmittag fertig gehabt."></textarea>
-        </div>
-      </div>
+      <div class="f"><label>Häufige Einwände / FAQ <span class="lh">(3–4 Fragen)</span></label><textarea id="mfaq" placeholder="z.B.&#10;Ich hab keine Zeit → Die Module sind so aufgebaut dass du mit 30-60 Min. pro Tag in 30 Tagen fertig bist&#10;Ich bin Anfänger → Genau dafür ist es gemacht. Du brauchst kein Vorwissen&#10;Ich hab das woanders schon versucht → Weil du noch keinen klaren Fahrplan hattest. Den bekommst du hier&#10;Lohnt sich das für mich? → Wenn du Wissen hast das anderen hilft: ja"></textarea></div>
+      <div class="f"><label>Dringlichkeit <span class="lh">(optional — nur wenn echt!)</span></label><input type="text" id="murg" placeholder="z.B. Einführungspreis gilt nur bis [Datum] · danach 197€"></div>
 
       <!-- VALIDATION -->
       <div class="val">
         <div class="val-title">Schnell-Check</div>
-        <div class="val-row"><div class="vdot" id="vd1"></div><span class="vtxt" id="vt1">Pitch-Satz enthält ein konkretes, messbares Ergebnis</span></div>
-        <div class="val-row"><div class="vdot" id="vd2"></div><span class="vtxt" id="vt2">Inhalte sind konkret (keine weichen Aussagen wie "wertvoll")</span></div>
-        <div class="val-row"><div class="vdot" id="vd3"></div><span class="vtxt" id="vt3">Preis ist eingetragen</span></div>
-        <div class="val-row"><div class="vdot" id="vd4"></div><span class="vtxt" id="vt4">Zielgruppe ist definiert</span></div>
+        <div class="vr"><div class="vd" id="vd1"></div><span class="vt">Headline enthält konkretes Ergebnis + Zeitraum</span></div>
+        <div class="vr"><div class="vd" id="vd2"></div><span class="vt">Problem beschrieben (Ausgangssituation)</span></div>
+        <div class="vr"><div class="vd" id="vd3"></div><span class="vt">Inhalte konkret formuliert</span></div>
+        <div class="vr"><div class="vd" id="vd4"></div><span class="vt">Preis eingetragen</span></div>
+        <div class="vr"><div class="vd" id="vd5"></div><span class="vt">Zielgruppe definiert</span></div>
       </div>
 
-      <!-- GOLDEN RULE -->
+      <!-- GOLDEN -->
       <div class="golden" id="golden">
-        <p>„Liest jemand deinen Pitch-Satz und weiß sofort, was er konkret bekommt?"</p>
-        <div class="golden-btns">
-          <button class="btn-gy" onclick="goldenYes()">Ja, absolut klar ✓</button>
-          <button class="btn-gn" onclick="goldenNo()">Nein, nochmal überarbeiten</button>
+        <p>„Liest jemand deine Headline und weiß sofort, was er konkret bekommt — und warum er es jetzt kaufen soll?"</p>
+        <div class="gb">
+          <button class="bgy" onclick="goldenY()">Ja, absolut klar ✓</button>
+          <button class="bgn" onclick="goldenN()">Nein, nochmal überarbeiten</button>
         </div>
       </div>
 
     </div><!-- /card-body -->
 
-    <!-- GENERATE -->
     <div class="gen-wrap">
-      <button class="btn-gen" id="btn" onclick="generate()">
-        Salespage generieren ✦
-      </button>
+      <button class="btn-gen" id="btn" onclick="generate()">Salespage generieren ✦</button>
     </div>
 
-    <!-- RESULT -->
-    <div class="result" id="result">
-      <div id="res-inner"></div>
-    </div>
+    <div class="result" id="result"><div id="res-inner"></div></div>
 
   </div><!-- /card -->
 </div><!-- /wrap -->
 
 <script>
 let lastHTML = '';
-
-// ── VALUE HELPER ──
 const v = id => (document.getElementById(id)?.value || '').trim();
 
-// ── IMAGE UPLOAD ──
-function loadImg(input, dropId, b64Id, isAvatar = false) {
+// ── IMG ──
+function loadImg(input, dId, bId, rId, isAv = false) {
   const file = input.files[0];
   if (!file) return;
-  if (file.size > 2.5 * 1024 * 1024) { alert('Bild zu groß – bitte max. 2 MB'); return; }
+  if (file.size > 2.5 * 1024 * 1024) { alert('Bild zu groß – max. 2 MB'); return; }
   const reader = new FileReader();
   reader.onload = e => {
     const b64 = e.target.result;
-    document.getElementById(b64Id).value = b64;
-    const drop = document.getElementById(dropId);
-    if (isAvatar) {
-      drop.innerHTML = `<img src="${b64}" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;margin:0 auto"><input type="file" id="${input.id}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}',true)" style="position:absolute;inset:0;opacity:0;cursor:pointer">`;
-    } else {
-      drop.innerHTML = `<img src="${b64}" style="width:100%;height:130px;object-fit:cover;border-radius:9px;display:block"><input type="file" id="${input.id}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}')" style="position:absolute;inset:0;opacity:0;cursor:pointer">`;
-    }
+    document.getElementById(bId).value = b64;
+    const drop = document.getElementById(dId);
+    const fileId = input.id;
+    const style = isAv
+      ? 'width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;margin:auto'
+      : 'width:100%;height:130px;object-fit:cover;border-radius:9px;display:block';
+    drop.innerHTML = `<img src="${b64}" style="${style}"><input type="file" id="${fileId}" accept="image/*" onchange="loadImg(this,'${dId}','${bId}','${rId}',${isAv})" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">`;
     drop.classList.add('filled');
-    const rmBtn = document.getElementById(dropId.replace('drop','rm'));
-    if (rmBtn) rmBtn.classList.add('visible');
+    const rm = document.getElementById(rId);
+    if (rm) rm.classList.add('on');
   };
   reader.readAsDataURL(file);
 }
 
-function removeImg(dropId, inpId, b64Id, rmId, isAvatar = false) {
-  document.getElementById(b64Id).value = '';
-  const drop = document.getElementById(dropId);
+function rmImg(dId, iId, bId, rId, isAv = false) {
+  document.getElementById(bId).value = '';
+  const drop = document.getElementById(dId);
   drop.classList.remove('filled');
-  if (isAvatar) {
-    drop.innerHTML = `<input type="file" id="${inpId}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}',true)" style="position:absolute;inset:0;opacity:0;cursor:pointer"><span class="upload-ico" style="font-size:18px">👤</span><span class="upload-txt" style="font-size:10px">Foto hochladen</span>`;
+  const fileId = iId;
+  if (isAv) {
+    drop.innerHTML = `<input type="file" id="${fileId}" accept="image/*" onchange="loadImg(this,'${dId}','${bId}','${rId}',true)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"><span class="uico" style="font-size:18px">👤</span><span class="utxt" style="font-size:10px">Foto hochladen</span>`;
   } else {
-    drop.innerHTML = `<input type="file" id="${inpId}" accept="image/*" onchange="loadImg(this,'${dropId}','${b64Id}')" style="position:absolute;inset:0;opacity:0;cursor:pointer"><span class="upload-ico">🖼</span><span class="upload-txt">Hier klicken oder Bild ablegen</span><span class="upload-sub">JPG, PNG · empfohlen 800×500px · max. 2MB</span>`;
+    drop.innerHTML = `<input type="file" id="${fileId}" accept="image/*" onchange="loadImg(this,'${dId}','${bId}','${rId}')" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"><span class="uico">🖼</span><span class="utxt">Klicken oder Bild ablegen</span><span class="usub">JPG, PNG · max. 2 MB</span>`;
   }
-  const rmBtn = document.getElementById(rmId);
-  if (rmBtn) rmBtn.classList.remove('visible');
+  const rm = document.getElementById(rId);
+  if (rm) rm.classList.remove('on');
 }
 
 // ── VALIDATION ──
 function runVal() {
-  const pitch = v('mpit');
-  const content = v('mcon');
-  const price = v('mp');
-  const target = v('mtg');
-  const badWords = ['wertvoll', 'umfassend', 'intensiv', 'exklusiv', 'holistisch', 'ganzheitlich'];
-  const concreteWords = /\d|Minuten|Stunden|Tage|Wochen|Monate|Schritt|Vorlage|Video|Workbook|PDF|Checklist|Preset|Template|Formel|System/i;
-
+  const hl = v('mhl'), prob = v('mprob'), con = v('mcon'), price = v('mp'), tg = v('mtg');
+  const hasTime = /\d.*(Tag|Woche|Monat|Stunde|Jahr|Min)/i.test(hl) || /in \d/i.test(hl);
+  const badW = ['wertvoll','umfassend','intensiv','exklusiv','ganzheitlich'];
+  const conOk = con.length > 0 && !badW.some(w => con.toLowerCase().includes(w));
   const checks = [
-    { dot: 'vd1', ok: concreteWords.test(pitch) && pitch.length > 10 },
-    { dot: 'vd2', ok: content.length > 0 && !badWords.some(w => content.toLowerCase().includes(w)) },
-    { dot: 'vd3', ok: price.length > 0 },
-    { dot: 'vd4', ok: target.length > 5 },
+    { id: 'vd1', ok: hl.length > 10 && hasTime },
+    { id: 'vd2', ok: prob.length > 20 },
+    { id: 'vd3', ok: conOk },
+    { id: 'vd4', ok: price.length > 0 },
+    { id: 'vd5', ok: tg.length > 5 },
   ];
-
-  checks.forEach(({ dot, ok }) => {
-    const el = document.getElementById(dot);
-    const filled = dot === 'vd1' ? pitch.length > 0 : dot === 'vd2' ? content.length > 0 : dot === 'vd3' ? price.length > 0 : target.length > 0;
-    el.className = 'vdot' + (filled ? (ok ? ' ok' : ' warn') : '');
+  checks.forEach(({ id, ok }) => {
+    const filled = id === 'vd1' ? hl.length > 0 : id === 'vd2' ? prob.length > 0 : id === 'vd3' ? con.length > 0 : id === 'vd4' ? price.length > 0 : tg.length > 0;
+    document.getElementById(id).className = 'vd' + (filled ? (ok ? ' ok' : ' warn') : '');
   });
-
-  const allOk = checks.every(c => c.ok);
-  document.getElementById('golden').style.display = allOk ? 'block' : 'none';
+  document.getElementById('golden').style.display = checks.every(c => c.ok) ? 'block' : 'none';
 }
 
-['mpit','mcon','mp','mtg'].forEach(id => {
-  document.getElementById(id)?.addEventListener('input', runVal);
-});
+['mhl','mprob','mcon','mp','mtg'].forEach(id => document.getElementById(id)?.addEventListener('input', runVal));
 
-function goldenYes() {
+function goldenY() {
   const g = document.getElementById('golden');
-  g.style.background = 'linear-gradient(135deg, #edf7ed 0%, #e4f2e4 100%)';
+  g.style.background = 'linear-gradient(135deg,#edf7ed,#e4f2e4)';
   g.style.borderColor = '#52b788';
-  g.querySelector('p').textContent = '✓ Super – dein Pitch ist klar und überzeugend.';
-  g.querySelectorAll('.golden-btns button').forEach(b => b.style.display = 'none');
+  g.querySelector('p').textContent = '✓ Sehr gut – deine Salespage wird stark sein.';
+  g.querySelectorAll('button').forEach(b => b.style.display = 'none');
 }
-function goldenNo() {
-  document.getElementById('mpit').focus();
-  document.getElementById('mpit').style.borderColor = 'var(--gold)';
+function goldenN() {
+  document.getElementById('mhl').focus();
   document.getElementById('golden').style.display = 'none';
 }
 
 // ── PROMPT ──
 function buildPrompt() {
-  const coverB64 = v('cv-b64');
-  const t1b = v('t1-b64');
-  const t2b = v('t2-b64');
+  const cvB = v('cv-b'), meB = v('me-b');
+  const t1b = v('t1-b'), t2b = v('t2-b'), t3b = v('t3-b');
 
-  const coverTag = coverB64
-    ? `KURS-COVER BILD: Baue dieses Bild direkt nach der Headline ein als: <img src="${coverB64}" alt="Kurs Cover" style="max-width:100%;border-radius:16px;display:block;margin:24px auto;box-shadow:0 8px 32px rgba(0,0,0,0.12)">`
-    : '';
+  const imgTag = (b64, style) => b64 ? `<img src="${b64}" style="${style}">` : '';
 
-  const t1photo = t1b
-    ? `<img src="${t1b}" alt="${v('t1n')}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0">`
-    : '';
-  const t2photo = t2b
-    ? `<img src="${t2b}" alt="${v('t2n')}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0">`
-    : '';
+  const coverHTML = cvB ? `<img src="${cvB}" alt="Kurs Cover" style="max-width:100%;border-radius:16px;display:block;margin:28px auto;box-shadow:0 8px 32px rgba(0,0,0,0.12)">` : '';
+  const meHTML = meB ? `<img src="${meB}" alt="Profilfoto" style="width:80px;height:80px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 16px">` : '';
 
-  return `Du bist ein erstklassiger Copywriter für digitale Miniprodukte im DACH-Raum.
+  const testiBlock = (b64, name, text) => {
+    if (!name && !text) return 'keines';
+    const foto = b64 ? `<img src="${b64}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0">` : '';
+    return `${foto ? '[MIT FOTO: ' + foto + '] ' : ''}Name: ${name} | Zitat: "${text}"`;
+  };
 
-Erstelle eine vollständige, VERKAUFSSTARKE HTML-Checkout-Seite. Das Ergebnis muss optisch MODERN und HOCHWERTIG sein.
+  return `Du bist ein erstklassiger Copywriter für digitale Produkte im DACH-Raum.
+Du schreibst für IMPULSKÄUFER. Das ist der wichtigste Hinweis überhaupt.
 
-PRODUKT:
-- Name: ${v('mn')}
-- Preis: ${v('mp')}€ netto
-- Pitch-Satz: ${v('mpit')}
+IMPULSKAUF-PSYCHOLOGIE — DIESE REGELN GELTEN FÜR JEDEN SATZ:
+- Die Leserin entscheidet in SEKUNDEN, nicht Minuten
+- Jeder Satz muss sofort ein "Ja, das will ich" auslösen
+- NIEMALS mehr als 2 Zeilen Text am Stück — dann Pause, Abstand, neuer Gedanke
+- Emotionen ZUERST — Logik danach
+- Konkrete Bilder erzeugen: "Morgens aufwachen. Handy aufmachen. Zahlungsbenachrichtigung."
+- FOMO ohne Druck: "Das könnte ab heute dein Leben sein"
+- Jeder CTA-Button fühlt sich an wie eine Erlösung, nicht wie ein Kauf
+- Keine langen Erklärungen — zeigen was möglich ist, nicht erklären wie es funktioniert
+- Das Gehirn soll bei jedem Block denken: "Das bin ich. Das will ich. Das brauche ich jetzt."
+- Kurze Sätze. Wirklich kurz. Manchmal nur 3 Wörter. Das wirkt.
+
+Erstelle eine VOLLSTÄNDIGE, VERKAUFSSTARKE HTML-Salespage nach dem exakten 11-Block Blueprint.
+
+PRODUKT-DATEN:
+- Produktname: ${v('mn')}
+- Preis: ${v('mp')}€ netto ${v('mold') ? '(regulär: ' + v('mold') + ')' : ''}
 - Zielgruppe: ${v('mtg')}
-- Was ist drin: ${v('mcon')}
+- Headline-Versprechen: ${v('mhl')}
+- Problem / Ausgangssituation: ${v('mprob')}
+- Was sie schon versucht hat: ${v('mtried')}
+- Transformation "Stell dir vor": ${v('mtrans')}
+- Module / Inhalte: ${v('mcon')}
 - Format: ${v('mfmt')}
-- Für wen: ${v('mfw')}
 - Häufigster Einwand: ${v('mobj')}
-- Testimonial 1: ${v('t1n') ? '"' + v('t1t') + '" — ' + v('t1n') : 'keines'}
-- Testimonial 2: ${v('t2n') ? '"' + v('t2t') + '" — ' + v('t2n') : 'keines'}
+- Für wen: ${v('mfw')}
+- Nicht für wen: ${v('mfwn')}
+- Story / Credibility: ${v('mstory')}
+- FAQ / Einwände: ${v('mfaq')}
+- Garantie: ${v('mgar') || 'keine'}
+- Dringlichkeit: ${v('murg') || 'keine'}
+- Testimonial 1: ${testiBlock(t1b, v('t1n'), v('t1t'))}
+- Testimonial 2: ${testiBlock(t2b, v('t2n'), v('t2t'))}
+- Testimonial 3: ${testiBlock(t3b, v('t3n'), v('t3t'))}
+${cvB ? '- Kurs-Cover Bild: EINBAUEN direkt nach der Headline: ' + coverHTML : ''}
+${meB ? '- Profilfoto: EINBAUEN im "Über mich" Block: ' + meHTML : ''}
 
-${coverTag}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PFLICHT: EXAKT DIESER 11-BLOCK BLUEPRINT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-SEITENSTRUKTUR (genau diese 5 Blöcke — nicht mehr, nicht weniger):
+BLOCK 1 — HEADLINE
+→ Große, starke Headline: "[Konkretes Ergebnis] in [Zeitraum] — auch wenn du [Einwand]"
+→ Subheadline: 1 Satz der die Headline verstärkt
+${cvB ? '→ Kurs-Cover Bild einbauen' : ''}
+→ CTA-Button #1 (sofort sichtbar)
 
-━━━ BLOCK 1: HERO ━━━
-${coverB64 ? '→ Kurs-Cover Bild einbauen (Code oben)' : ''}
-→ Pitch-Satz groß & prominent als Headline
-→ Kurze Subheadline mit Zielgruppe
-→ Erster CTA-Button
+BLOCK 2 — PROBLEM
+→ Überschrift: "Kennst du das?" oder "Du kennst das..."
+→ Fließtext (KEINE Bullet-Liste!) — beschreib die Situation so genau dass sie denkt: "Das bin ich"
+→ Was sie schon versucht hat + warum es nicht geklappt hat
+→ Abschluss: "Das Problem bist nicht du — das Problem ist [echter Grund]"
 
-━━━ BLOCK 2: WAS IST DRIN? ━━━
-→ Überschrift: "Das bekommst du:"
-→ 3–5 Punkte mit ✅ Häkchen
-→ Format pro Punkt: "✅ [Was genau] — [was das dir bringt]"
-→ Konkret! Kein Blabla.
+BLOCK 3 — TRANSFORMATION
+→ Überschrift: "Stell dir vor..."
+→ Konkretes Bild des Lebens nach dem Kauf — emotional und greifbar
+→ Von [Punkt A] zu [Punkt B] in [Zeitraum]
 
-━━━ BLOCK 3: FÜR WEN? ━━━
-→ 1–2 Sätze direkt angesprochen
-→ "Dieser Kurs ist für dich wenn du... und endlich... willst — ohne..."
+BLOCK 4 — FÜR WEN?
+→ ✅ "Für dich wenn..." (3 Punkte)
+→ ❌ "Nicht für dich wenn..." (2 Punkte)
 
-━━━ BLOCK 4: TESTIMONIALS ━━━
-${t1b || v('t1n') ? `→ Testimonial 1 einbauen${t1photo ? ' mit Foto: ' + t1photo : ''}: "${v('t1t')}" — ${v('t1n')}` : '→ Kein Testimonial 1 vorhanden — weglassen'}
-${t2b || v('t2n') ? `→ Testimonial 2 einbauen${t2photo ? ' mit Foto: ' + t2photo : ''}: "${v('t2t')}" — ${v('t2n')}` : '→ Kein Testimonial 2 vorhanden — weglassen'}
-→ Layout: Rundes Foto links + Name + Zitat rechts (Card-Style)
+BLOCK 5 — ÜBER MICH
+${meB ? '→ Profilfoto einbauen' : ''}
+→ Persönliche Story: Ausgangssituation → Veränderung → konkretes Ergebnis
+→ Warum bin ich die richtige Person
 
-━━━ BLOCK 5: PREIS + KAUFBUTTON ━━━
+BLOCK 6 — WAS IST DRIN?
+→ Alle Module/Inhalte mit 📌 Aufzählung
+→ Pro Modul: Titel + was die Person konkret lernt/bekommt
+→ CTA-Button #2 nach den Inhalten
+
+BLOCK 7 — SOCIAL PROOF
+→ 3 Testimonials (nur wenn angegeben, sonst weglassen)
+→ Format: Rundes Profilfoto + ⭐⭐⭐⭐⭐ + Name/Beschreibung + Zitat (Vorher → Ergebnis)
+→ Testimonial-Fotos direkt einbauen falls vorhanden
+
+BLOCK 8 — FAQ / EINWÄNDE
+→ 3–4 Einwände als Frage + direkte ehrliche Antwort
+→ Layout: Akkordeon-Optik oder klare Q&A-Karten
+
+BLOCK 9 — PREIS
 → Produktname prominent
-→ Preis groß und klar sichtbar
+→ Was alles enthalten ist (Checkliste mit ✅)
+→ Wert-Gegenüberstellung wenn Streichpreis vorhanden
+→ Preis groß und klar
+→ Garantie wenn angegeben
 → "Du bekommst sofort Zugang per E-Mail"
-→ 3 Button-Varianten übereinander:
-   Option A: "Ja, ich will [konkretes Ergebnis aus dem Pitch] →"
-   Option B: "Sofort Zugang sichern →"
-   Option C: "Ich starte jetzt →"
+→ CTA-Button #3
 
-WAS WEGBLEIBT: ❌ Kein langer Problem-Block ❌ Keine Über-mich-Story ❌ Kein FAQ ❌ Keine Fake-Dringlichkeit
+BLOCK 10 — DRINGLICHKEIT
+→ Nur wenn angegeben — sonst weglassen
+→ "Angebot gilt nur bis [Datum]" oder "Nur noch X Plätze"
 
-DESIGN-ANFORDERUNGEN (sehr wichtig!):
+BLOCK 11 — FINALER CTA
+→ Kurze Zusammenfassung was die Person bekommt (3–5 Sätze)
+→ CTA-Button #4 — letzter Abschluss
+→ "Du bekommst sofort Zugang per E-Mail"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DESIGN-ANFORDERUNGEN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 - Google Fonts: Montserrat (400,500,600,700) + Cormorant Garamond italic für Headlines
-- Farbpalette: Hintergrund #f8f7f4, Karten #ffffff, Akzent #a26a25, Text #1e1d1a
-- Buttons: Gradient von #a26a25 zu #8d5a1e, border-radius 12px, box-shadow
-- Karten: weißer Hintergrund, border-radius 20px, dezenter Schatten
-- Viel Weißraum, klare Typografie, keine überladenen Elemente
-- Section-Trennungen mit elegantem Spacing
-- Vollständig responsive — perfekt auf Mobile (375px)
-- Hover-Effekte auf Buttons und interaktiven Elementen
+- Farben: Background #f8f7f4 · Weiß #ffffff · Akzent #a26a25 · Text #1e1d1a
+- Buttons: Gradient #a26a25 → #8d5a1e · border-radius 12px · box-shadow
+- Sektionen: abwechselnde Hintergründe (weiß / sehr helles beige) für visuelle Trennung
+- Karten: border-radius 16–20px · dezenter Schatten
+- Viel Weißraum · klare Hierarchie · keine überladenen Elemente
+- Vollständig responsive · perfekt auf Mobile (375px)
+- Hover-Effekte auf Buttons
+- Die Seite soll aussehen wie eine professionelle teure Salespage
 
-Die Seite muss aussehen wie eine professionelle, teure Salespage — nicht wie ein Template.
+SCHREIBREGELN:
+- Deutsch · Du-Form · KURZE Sätze (max. 12 Wörter) · empowernd ohne Druck
+- Absätze: nie mehr als 2-3 Sätze am Stück · dann visueller Abstand
+- Verboten: hustlen · Buzzwords · leere Phrasen · "Chatbot" · lange Erklärungen
+- Verboten: verschachtelte Sätze die mehr als einmal lesen muss
+- CTA-Buttons: aktiv + emotional · "Ja, ich will das →" · "Ich starte jetzt →" · "Das will ich haben →"
+- Headlines: Cormorant Garamond italic · groß · viel Weißraum darum
+- Jeder Block endet mit einem Satz der Lust auf den nächsten macht
 
-WICHTIG: Die Antwort beginnt mit <!DOCTYPE html> und endet mit </html>.
+Die Antwort beginnt mit <!DOCTYPE html> und endet mit </html>.
 Absolut kein Text, kein Markdown, keine Erklärungen davor oder danach.`;
 }
 
 // ── GENERATE ──
 async function generate() {
-  if (!v('mn') || !v('mp') || !v('mpit') || !v('mtg') || !v('mcon')) {
-    alert('Bitte fülle aus: Produktname, Preis, Pitch-Satz, Zielgruppe und Inhalte.');
+  if (!v('mn') || !v('mp') || !v('mhl') || !v('mtg') || !v('mcon')) {
+    alert('Pflichtfelder ausfüllen: Produktname, Preis, Headline, Zielgruppe, Inhalte.');
     return;
   }
-
   const btn = document.getElementById('btn');
   const result = document.getElementById('result');
   const inner = document.getElementById('res-inner');
-
   btn.disabled = true;
   btn.textContent = 'Wird erstellt...';
   result.style.display = 'block';
-  inner.innerHTML = `
-    <div class="ldbox">
-      <div class="spin"></div>
-      <p class="ldtxt">Salespage wird geschrieben...</p>
-      <p class="ldstep">ca. 25–35 Sekunden</p>
-    </div>`;
+  inner.innerHTML = `<div class="ldbox"><div class="spin"></div><p class="ldtxt">Deine Salespage wird gebaut...</p><p class="ldsub">ca. 30–45 Sekunden · 11 Blöcke</p></div>`;
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 
   try {
@@ -748,15 +572,14 @@ async function generate() {
     lastHTML = json.html;
 
     inner.innerHTML = `
-      <div class="ok-badge"><span class="ok-ico">✓</span> Salespage fertig!</div>
-      <p class="res-note">HTML kopieren und direkt in Elopage, ThriveCart oder Kajabi einbauen.<br>Oder als Datei herunterladen.</p>
+      <div class="ok-badge"><span>✓</span> Salespage fertig — 11 Blöcke generiert!</div>
+      <p class="res-note">HTML kopieren und direkt in Elopage, ThriveCart oder Kajabi einbauen.<br>Oder als Datei herunterladen und im Browser testen.</p>
       <div class="res-btns">
-        <button class="btn-copy" onclick="copyHTML()">HTML kopieren</button>
-        <button class="btn-dl" onclick="dlHTML()">Datei herunterladen</button>
-        <button class="btn-rst" onclick="resetAll()">Neu erstellen</button>
+        <button class="bcopy" onclick="copyHTML()">HTML kopieren</button>
+        <button class="bdl" onclick="dlHTML()">Datei herunterladen</button>
+        <button class="brst" onclick="resetAll()">Neu erstellen</button>
       </div>
-      <div class="res-pre">${esc(lastHTML.substring(0,1800))}${lastHTML.length>1800?'\n\n... +'+Math.round((lastHTML.length-1800)/1000)+'k Zeichen – Datei herunterladen für vollständigen Code':''}</div>`;
-
+      <div class="res-pre">${esc(lastHTML.substring(0,1800))}${lastHTML.length>1800?'\n\n...+'+Math.round((lastHTML.length-1800)/1000)+'k – Datei herunterladen für vollständigen Code':''}</div>`;
   } catch(err) {
     inner.innerHTML = `<div class="errbox">Fehler: ${err.message}</div>`;
   } finally {
@@ -769,9 +592,7 @@ const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;
 
 function copyHTML() {
   if (!lastHTML) return;
-  navigator.clipboard.writeText(lastHTML)
-    .then(() => alert('✓ HTML kopiert!'))
-    .catch(() => alert('Bitte manuell aus der Vorschau kopieren.'));
+  navigator.clipboard.writeText(lastHTML).then(() => alert('✓ HTML kopiert!')).catch(() => alert('Manuell kopieren.'));
 }
 
 function dlHTML() {
@@ -780,8 +601,7 @@ function dlHTML() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  const name = (v('mn') || 'salespage').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
-  a.download = `salespage-${name}.html`;
+  a.download = `salespage-${(v('mn')||'produkt').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')}.html`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -789,11 +609,11 @@ function dlHTML() {
 function resetAll() {
   lastHTML = '';
   document.getElementById('result').style.display = 'none';
-  document.querySelectorAll('input[type=text], input[type=number], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type=text],input[type=number],textarea').forEach(el => el.value = '');
   document.querySelectorAll('input[type=hidden]').forEach(el => el.value = '');
-  ['cv','t1','t2'].forEach(id => {
-    const isAvatar = id !== 'cv';
-    removeImg(`${id}-drop`, `${id}-inp`, `${id}-b64`, `${id}-rm`, isAvatar);
+  ['cv','me','t1','t2','t3'].forEach(id => {
+    const isAv = id !== 'cv';
+    try { rmImg(`${id}-d`,`${id}-i`,`${id}-b`,`${id}-r`, isAv); } catch(e) {}
   });
   document.getElementById('golden').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
